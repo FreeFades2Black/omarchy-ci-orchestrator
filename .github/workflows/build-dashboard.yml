@@ -29,32 +29,36 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Aggregate Managed Repositories Telemetry
+      - name: Aggregate All Fleet Repositories
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p docs
-          echo "[*] Querying all account repositories..."
-          
-          # Query all non-fork, non-archived repositories owned by FreeFades2Black
-          REPOS_USER=$(gh repo list FreeFades2Black --source --no-archived --limit 100 --json nameWithOwner,name,description,updatedAt 2>/dev/null || echo "[]")
-          
-          # Query organization repositories
-          REPOS_ORG=$(gh repo list For-Your-Service --source --no-archived --limit 50 --json nameWithOwner,name,description,updatedAt 2>/dev/null || echo "[]")
-          
-          # Combine lists safely via jq
-          REPOS_JSON=$(jq -s '.[0] + .[1] | unique_by(.nameWithOwner)' <(echo "$REPOS_USER") <(echo "$REPOS_ORG"))
-          
-          # Query all automated PRs created by the agent
+          echo "[*] Querying entire fleet without fork or visibility restrictions..."
+
+          # Fetch all repositories owned by FreeFades2Black (including forks and private)
+          USER_REPOS=$(gh repo list FreeFades2Black --limit 100 --json nameWithOwner,name,description,updatedAt,isPrivate 2>/dev/null || echo "[]")
+
+          # Fetch all repositories under For-Your-Service
+          ORG_REPOS=$(gh repo list For-Your-Service --limit 100 --json nameWithOwner,name,description,updatedAt,isPrivate 2>/dev/null || echo "[]")
+
+          # Merge both lists, deduplicate by nameWithOwner, and verify count
+          ALL_REPOS=$(jq -s '.[0] + .[1] | unique_by(.nameWithOwner)' <(echo "$USER_REPOS") <(echo "$ORG_REPOS"))
+          REPO_COUNT=$(echo "$ALL_REPOS" | jq 'length')
+          echo "[+] Total repositories collected: $REPO_COUNT"
+
+          # Query all chore PRs across the fleet
           PRS_JSON=$(gh search prs --author FreeFades2Black "chore" --sort updated --limit 50 --json number,title,state,url,repository 2>/dev/null || echo "[]")
-          
-          # Compile structured telemetry JSON
+
+          # Compile telemetry.json
           jq -n \
             --arg timestamp "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
-            --argjson repos "$REPOS_JSON" \
+            --argjson count "$REPO_COUNT" \
+            --argjson repos "$ALL_REPOS" \
             --argjson prs "$PRS_JSON" \
             '{
               last_updated: $timestamp,
+              repo_count: $count,
               cisa_count: 1731,
               academic_count: 8,
               engine_status: {

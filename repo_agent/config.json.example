@@ -2,7 +2,7 @@
   "scan_interval_seconds": 3600,
   "scraper_url": "http://127.0.0.1:8484/research",
   "filters": {
-    "include_forks": false,
+    "include_forks": true,
     "target_repos": [],
     "excluded_repos": [],
     "required_topics": []
