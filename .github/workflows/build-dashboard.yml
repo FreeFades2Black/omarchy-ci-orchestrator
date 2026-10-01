@@ -29,36 +29,34 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Aggregate All Fleet Repositories
+      - name: Aggregate All Fleet Repositories & Remediation Timelines
         env:
           GH_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p docs
-          echo "[*] Querying entire fleet without fork or visibility restrictions..."
+          echo "[*] Querying repositories and pulling remediation run timestamps..."
 
-          # Fetch all repositories owned by FreeFades2Black (including forks and private)
+          # 1. Fetch repositories
           USER_REPOS=$(gh repo list FreeFades2Black --limit 100 --json nameWithOwner,name,description,updatedAt,isPrivate 2>/dev/null || echo "[]")
-
-          # Fetch all repositories under For-Your-Service
           ORG_REPOS=$(gh repo list For-Your-Service --limit 100 --json nameWithOwner,name,description,updatedAt,isPrivate 2>/dev/null || echo "[]")
-
-          # Merge both lists, deduplicate by nameWithOwner, and verify count
           ALL_REPOS=$(jq -s '.[0] + .[1] | unique_by(.nameWithOwner)' <(echo "$USER_REPOS") <(echo "$ORG_REPOS"))
-          REPO_COUNT=$(echo "$ALL_REPOS" | jq 'length')
-          echo "[+] Total repositories collected: $REPO_COUNT"
 
-          # Query all chore PRs across the fleet
-          PRS_JSON=$(gh search prs --author FreeFades2Black "chore" --sort updated --limit 50 --json number,title,state,url,repository 2>/dev/null || echo "[]")
+          # 2. Extract detailed PR timestamps (createdAt, updatedAt, closedAt)
+          PRS_JSON=$(gh search prs --author FreeFades2Black "chore" --sort updated --limit 60 \
+            --json number,title,state,url,repository,createdAt,updatedAt,closedAt 2>/dev/null || echo "[]")
 
-          # Compile telemetry.json
+          # 3. Sort PRs by most recent remediation activity first
+          SORTED_PRS=$(echo "$PRS_JSON" | jq 'sort_by(.updatedAt) | reverse')
+
+          # 4. Construct live telemetry feed
           jq -n \
             --arg timestamp "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
-            --argjson count "$REPO_COUNT" \
+            --argjson repo_count "$(echo "$ALL_REPOS" | jq 'length')" \
             --argjson repos "$ALL_REPOS" \
-            --argjson prs "$PRS_JSON" \
+            --argjson prs "$SORTED_PRS" \
             '{
               last_updated: $timestamp,
-              repo_count: $count,
+              repo_count: $repo_count,
               cisa_count: 1731,
               academic_count: 8,
               engine_status: {
