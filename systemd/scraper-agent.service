@@ -1,0 +1,17 @@
+[Unit]
+Description=Scraper and Research Intelligence Agent
+After=network.target
+Documentation=https://github.com/FreeFades2Black
+
+[Service]
+Type=simple
+WorkingDirectory=%h/agents/scraper_agent
+Environment="PYTHONPATH=%h/agents"
+ExecStart=%h/agents/venv/bin/python main.py
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

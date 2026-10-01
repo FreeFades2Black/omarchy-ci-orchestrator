@@ -1,0 +1,13 @@
+[Unit]
+Description=SQLite Maintenance for intel_cache.db (WAL Checkpoint & Vacuum)
+After=network.target
+OnFailure=notify-failure@%n.service
+
+[Service]
+Type=oneshot
+ExecStart=/home/free/agents/scripts/vacuum_cache_db.sh
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,8 @@
+[Unit]
+Description=Desktop Notification on Systemd User Unit Failure (%i)
+
+[Service]
+Type=oneshot
+ExecStart=/home/free/agents/scripts/systemd_notify_failure.sh %i
+StandardOutput=journal
+StandardError=journal

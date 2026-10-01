@@ -1,0 +1,38 @@
+name: CI Validation Gate
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r repo_agent/requirements.txt
+          pip install -r scraper_agent/requirements.txt
+
+      - name: Lint Python Syntax
+        run: |
+          python -m py_compile shared/ipc_schema.py
+          python -m py_compile scraper_agent/db.py
+          python -m py_compile scraper_agent/main.py
+          python -m py_compile repo_agent/main.py
+
+      - name: Verify Shell Scripts Syntax
+        run: |
+          bash -n scripts/install.sh
+          bash -n scripts/vacuum_cache_db.sh
+          bash -n scripts/systemd_notify_failure.sh

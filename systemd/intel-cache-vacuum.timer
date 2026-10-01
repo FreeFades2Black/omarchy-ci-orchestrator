@@ -1,0 +1,10 @@
+[Unit]
+Description=Weekly Trigger for intel_cache.db Maintenance
+
+[Timer]
+OnCalendar=Sun *-*-* 03:00:00
+Persistent=true
+RandomizedDelaySec=300
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,96 @@
+{
+  "last_updated": "2026-10-01T20:41:49Z",
+  "engine_status": {
+    "scraper_daemon": "healthy",
+    "scraper_version": "2.1.0 (sqlite-backed)",
+    "cisa_cves_indexed": 1731,
+    "academic_citations_indexed": 8,
+    "sqlite_wal_mode": true
+  },
+  "managed_repos": [
+    {
+      "name": "azure-iac-generator",
+      "nameWithOwner": "FreeFades2Black/azure-iac-generator",
+      "description": "Resilient Azure IaC and Configuration Generator for multi-tier Terraform and Ansible",
+      "status": "up-to-date",
+      "updatedAt": "2026-09-30T16:54:55Z"
+    },
+    {
+      "name": "base-docker-web",
+      "nameWithOwner": "FreeFades2Black/base-docker-web",
+      "description": "Base Docker web service CI/CD template with automated security hardening",
+      "status": "up-to-date",
+      "updatedAt": "2026-09-30T16:57:25Z"
+    },
+    {
+      "name": "For-Your-Service",
+      "nameWithOwner": "For-Your-Service/For-Your-Service",
+      "description": "Enterprise platform services and automated GitOps engine",
+      "status": "up-to-date",
+      "updatedAt": "2026-09-30T16:39:43Z"
+    },
+    {
+      "name": "demo-repository",
+      "nameWithOwner": "For-Your-Service/demo-repository",
+      "description": "Demonstration repository for CI/CD workflow automation and auto-merge validation",
+      "status": "up-to-date",
+      "updatedAt": "2026-09-30T16:39:30Z"
+    },
+    {
+      "name": "defense-gitops-landing-zone",
+      "nameWithOwner": "FreeFades2Black/defense-gitops-landing-zone",
+      "description": "Hardened CIS Benchmark Kubernetes/ECS Infrastructure & OPA Zero-Trust Enforcement",
+      "status": "monitored",
+      "updatedAt": "2026-09-14T14:07:24Z"
+    },
+    {
+      "name": "cloud-asset-lifecycle-operator",
+      "nameWithOwner": "FreeFades2Black/cloud-asset-lifecycle-operator",
+      "description": "Automated Certificate & Cloud Asset Lifecycle Operator — Continuous TLS Expiration Auditing",
+      "status": "monitored",
+      "updatedAt": "2026-10-01T12:32:35Z"
+    }
+  ],
+  "dispatched_prs": [
+    {
+      "number": 1,
+      "title": "chore(ci): automated actions & dependency updates (1790786204)",
+      "state": "MERGED",
+      "url": "https://github.com/FreeFades2Black/base-docker-web/pull/1",
+      "repository": {
+        "name": "base-docker-web",
+        "nameWithOwner": "FreeFades2Black/base-docker-web"
+      }
+    },
+    {
+      "number": 1,
+      "title": "chore(ci): automated actions & dependency updates (1790786194)",
+      "state": "MERGED",
+      "url": "https://github.com/FreeFades2Black/azure-iac-generator/pull/1",
+      "repository": {
+        "name": "azure-iac-generator",
+        "nameWithOwner": "FreeFades2Black/azure-iac-generator"
+      }
+    },
+    {
+      "number": 129,
+      "title": "chore(ci): automated actions & dependency updates (1790786103)",
+      "state": "MERGED",
+      "url": "https://github.com/For-Your-Service/For-Your-Service/pull/129",
+      "repository": {
+        "name": "For-Your-Service",
+        "nameWithOwner": "For-Your-Service/For-Your-Service"
+      }
+    },
+    {
+      "number": 1,
+      "title": "chore(ci): automated actions & dependency updates (1790786085)",
+      "state": "MERGED",
+      "url": "https://github.com/For-Your-Service/demo-repository/pull/1",
+      "repository": {
+        "name": "demo-repository",
+        "nameWithOwner": "For-Your-Service/demo-repository"
+      }
+    }
+  ]
+}

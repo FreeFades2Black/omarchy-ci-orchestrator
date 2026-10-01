@@ -1,0 +1,21 @@
+[Unit]
+Description=GitHub Repo Scrubber and Automator Agent
+After=network.target scraper-agent.service
+Wants=scraper-agent.service
+Documentation=https://github.com/FreeFades2Black
+
+[Service]
+Type=simple
+WorkingDirectory=%h/agents/repo_agent
+EnvironmentFile=-%h/agents/repo_agent/.env
+Environment="PYTHONPATH=%h/agents"
+Environment="DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/%U/bus"
+Environment="DISPLAY=:0"
+ExecStart=%h/agents/venv/bin/python main.py
+Restart=on-failure
+RestartSec=15
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target
