@@ -2,707 +2,565 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Autonomous CI/CD Fleet Telemetry | Omarchy Orchestrator</title>
+  <title>Autonomous CI/CD Fleet Governance & Intelligence Orchestrator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22><text y=%2226%22 font-size=%2224%22>⚡</text></svg>">
   <style>
-    :root {
-      --bg: #0d1117;
-      --card-bg: #161b22;
-      --border: #30363d;
-      --text: #c9d1d9;
-      --text-muted: #8b949e;
-      --heading: #f0f6fc;
-      --accent: #58a6ff;
-      --accent-hover: #79c0ff;
-      --green: #238636;
-      --green-bg: #2ea04326;
-      --blue: #1f6feb;
-      --blue-bg: #388bfd26;
-      --purple: #8957e5;
-      --purple-bg: #ab7df826;
-    }
-    * { box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      background: #0d1117;
+      color: #c9d1d9;
       margin: 0;
       padding: 2rem;
       line-height: 1.5;
     }
-    .container { max-width: 1200px; margin: 0 auto; }
-    header {
-      margin-bottom: 2rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    h1 {
-      color: var(--heading);
-      margin: 0 0 0.5rem 0;
-      font-size: 1.8rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .subtitle { color: var(--text-muted); margin: 0; font-size: 0.95rem; }
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: var(--green-bg);
-      color: #3fb950;
-      border: 1px solid rgba(46,160,67,0.4);
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      background: #3fb950;
-      border-radius: 50%;
-      box-shadow: 0 0 8px #3fb950;
-    }
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    .stat-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1rem 1.25rem;
-    }
-    .stat-label { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem; }
-    .stat-val { font-size: 1.6rem; font-weight: 700; color: var(--heading); }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1.5rem; }
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.25rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .card-header h2 { margin: 0; font-size: 1.15rem; color: var(--heading); }
-    ul { list-style: none; padding: 0; margin: 0; }
-    li {
-      padding: 0.75rem 0;
-      border-bottom: 1px solid #21262d;
-      font-size: 0.9rem;
-    }
-    li:last-child { border-bottom: none; }
-    a { color: var(--accent); text-decoration: none; font-weight: 500; }
-    a:hover { color: var(--accent-hover); text-decoration: underline; }
+    a { color: #58a6ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h1, h2, h3, h4 { color: #f0f6fc; margin-top: 0; }
     .badge {
       display: inline-block;
-      padding: 0.2rem 0.5rem;
+      padding: 0.2rem 0.55rem;
       border-radius: 12px;
       font-size: 0.75rem;
       font-weight: 600;
-      letter-spacing: 0.3px;
-      margin-right: 0.5rem;
     }
-    .badge-merged { background: var(--green-bg); color: #3fb950; border: 1px solid rgba(46,160,67,0.4); }
-    .badge-open { background: var(--blue-bg); color: #58a6ff; border: 1px solid rgba(56,139,253,0.4); }
-    .badge-uptodate { background: var(--purple-bg); color: #bc8cff; border: 1px solid rgba(171,125,248,0.4); }
-    .badge-closed { background: #21262d; color: #8b949e; border: 1px solid #30363d; }
-    .repo-meta { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem; }
-    .table-container {
-      overflow-x: auto;
-      margin-top: 0.5rem;
+    .badge-open { background: #1f6feb; color: #ffffff; }
+    .badge-merged { background: #238636; color: #ffffff; }
+    .badge-closed { background: #8957e5; color: #ffffff; }
+    .badge-warning { background: #d29922; color: #0d1117; }
+    .badge-critical { background: #da3633; color: #ffffff; }
+
+    /* Layout Containers */
+    .container { max-width: 1280px; margin: 0 auto; }
+    .grid-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.75rem;
     }
-    .timeline-table {
-      width: 100%;
-      border-collapse: collapse;
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+    .section-desc {
+      color: #8b949e;
       font-size: 0.88rem;
-      text-align: left;
+      margin-top: -0.25rem;
+      margin-bottom: 1.25rem;
+      border-left: 3px solid #388bfd;
+      padding-left: 0.75rem;
     }
-    .timeline-table th {
-      color: var(--text-muted);
-      font-weight: 600;
-      font-size: 0.78rem;
+    .metric-value {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #f0f6fc;
+      margin-top: 0.35rem;
+      font-family: monospace;
+    }
+    .metric-label {
+      font-size: 0.8rem;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.02);
-      white-space: nowrap;
+      letter-spacing: 0.05em;
+      color: #8b949e;
+      font-weight: 600;
     }
-    .timeline-table td {
-      padding: 0.85rem 1rem;
-      border-bottom: 1px solid #21262d;
-      vertical-align: middle;
+    .repo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 0.75rem;
+      max-height: 420px;
+      overflow-y: auto;
+      padding-right: 0.5rem;
     }
-    .timeline-table tr:last-child td {
-      border-bottom: none;
-    }
-    .timeline-table tr:hover {
-      background: rgba(255, 255, 255, 0.025);
-    }
-    .time-subtext {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      display: block;
-      margin-top: 2px;
-    }
-    footer {
-      margin-top: 3rem;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      border-top: 1px solid var(--border);
-      padding-top: 1.5rem;
+    .repo-item {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.75rem;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div>
-        <h1>⚡ Autonomous CI/CD Fleet Telemetry</h1>
-        <p class="subtitle" id="last-updated">Connecting to telemetry feed...</p>
-      </div>
-      <div>
-        <span class="status-pill"><span class="pulse-dot"></span> Daemons Active (Omarchy)</span>
-      </div>
-    </header>
+<div class="container">
 
-    <div class="stats-row">
-      <div class="stat-card">
-        <div class="stat-label">Monitored Repos</div>
-        <div class="stat-val" id="stat-repos">-</div>
+  <!-- Project Header & Detailed Project Overview -->
+  <header style="margin-bottom: 2rem; border-bottom: 1px solid #21262d; padding-bottom: 1.5rem;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <h1 style="margin-bottom: 0.25rem; font-size: 1.85rem;">Autonomous CI/CD Fleet Governance Engine</h1>
+        <div style="color: #8b949e; font-size: 0.95rem;">
+          Host: <code style="color: #58a6ff;">omarchy (Arch Linux)</code> | Remote Monitoring: <code style="color: #58a6ff;">Windows 11 Client</code>
+        </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-label">Dispatched Upgrades</div>
-        <div class="stat-val" id="stat-prs">-</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">CISA Vulnerabilities</div>
-        <div class="stat-val" id="stat-cisa">-</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Academic Papers</div>
-        <div class="stat-val" id="stat-academic">-</div>
+      <div style="text-align: right;">
+        <span id="topology-heartbeat" class="badge badge-merged" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;">
+          ● Host Heartbeat Connecting...
+        </span>
+        <div id="last-updated" style="font-size: 0.78rem; color: #8b949e; margin-top: 0.35rem;">Telemetry Loading...</div>
       </div>
     </div>
 
-    <div class="grid">
-      <!-- Interactive Architecture Topology Diagram -->
-      <div class="card" style="grid-column: 1 / -1; margin-bottom: 0.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-          <h3 style="margin: 0; color: #f0f6fc;">🏛️ Multi-Agent Architecture Topology</h3>
-          <span id="topology-heartbeat" style="font-size: 0.8rem; color: #3fb950; font-family: monospace;">● Live Heartbeat</span>
-        </div>
-        
-        <div style="background: #090d13; border: 1px solid #30363d; border-radius: 8px; padding: 1.5rem; overflow-x: auto;">
-          <svg viewBox="0 0 960 220" style="width: 100%; min-width: 760px; height: auto; font-family: -apple-system, BlinkMacSystemFont, sans-serif;">
-            <defs>
-              <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M 0 1 L 10 5 L 0 9 z" fill="#58a6ff" />
-              </marker>
-              <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M 0 1 L 10 5 L 0 9 z" fill="#3fb950" />
-              </marker>
-            </defs>
-
-            <!-- External Feeds Node -->
-            <rect x="20" y="30" width="180" height="150" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
-            <text x="35" y="60" fill="#58a6ff" font-weight="bold" font-size="14">External Intelligence</text>
-            <text x="35" y="85" fill="#8b949e" font-size="12">• CISA KEV (1,731)</text>
-            <text x="35" y="105" fill="#8b949e" font-size="12">• arXiv cs.SE / OpenAlex</text>
-            <text x="35" y="125" fill="#8b949e" font-size="12">• NIST SP 800-218</text>
-            <text x="35" y="145" fill="#8b949e" font-size="12">• GitHub Release Tags</text>
-
-            <!-- Arrow: External to Scraper -->
-            <line x1="200" y1="105" x2="260" y2="105" stroke="#58a6ff" stroke-width="2" marker-end="url(#arrow)"/>
-
-            <!-- Scraper Daemon Node -->
-            <rect x="270" y="30" width="190" height="150" rx="8" fill="#161b22" stroke="#238636" stroke-width="2"/>
-            <text x="285" y="60" fill="#3fb950" font-weight="bold" font-size="14">scraper-agent</text>
-            <text x="285" y="80" fill="#8b949e" font-size="11">FastAPI :8484 / aiohttp</text>
-            <text x="285" y="105" fill="#c9d1d9" font-size="12">Persistent Cache:</text>
-            <text x="285" y="125" fill="#f0883e" font-family="monospace" font-size="12">intel_cache.db (WAL)</text>
-            <text x="285" y="150" id="scraper-diag-metrics" fill="#8b949e" font-size="11">Mem: -- | CPU: --</text>
-
-            <!-- Arrow: Scraper to Repo Agent (IPC) -->
-            <line x1="460" y1="105" x2="520" y2="105" stroke="#58a6ff" stroke-width="2" marker-end="url(#arrow)"/>
-            <text x="470" y="95" fill="#8b949e" font-size="10">Local IPC</text>
-
-            <!-- Repo Agent Node -->
-            <rect x="530" y="30" width="190" height="150" rx="8" fill="#161b22" stroke="#1f6feb" stroke-width="2"/>
-            <text x="545" y="60" fill="#58a6ff" font-weight="bold" font-size="14">repo-agent</text>
-            <text x="545" y="80" fill="#8b949e" font-size="11">GitOps & Remediation</text>
-            <text x="545" y="105" fill="#c9d1d9" font-size="12">• Inspects Fleet Repos</text>
-            <text x="545" y="125" fill="#c9d1d9" font-size="12">• README Maintenance</text>
-            <text x="545" y="150" id="repo-diag-metrics" fill="#8b949e" font-size="11">Mem: -- | CPU: --</text>
-
-            <!-- Arrow: Repo Agent to Fleet GitHub -->
-            <line x1="720" y1="105" x2="780" y2="105" stroke="#3fb950" stroke-width="2" marker-end="url(#arrow-green)"/>
-            <text x="730" y="95" fill="#3fb950" font-size="10">Auto PRs</text>
-
-            <!-- GitHub Fleet & Watchdog Node -->
-            <rect x="790" y="30" width="150" height="150" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
-            <text x="805" y="60" fill="#f0f6fc" font-weight="bold" font-size="14">GitHub Fleet</text>
-            <text x="805" y="85" fill="#8b949e" font-size="12">44 Repositories</text>
-            <text x="805" y="105" fill="#8b949e" font-size="12">SQUASH Merge</text>
-            <line x1="800" y1="118" x2="930" y2="118" stroke="#30363d" stroke-width="1"/>
-            <text x="805" y="138" fill="#d29922" font-weight="bold" font-size="12">Windows Toast</text>
-            <text x="805" y="155" fill="#8b949e" font-size="10">SSH Poll (15s)</text>
-          </svg>
-        </div>
-      </div>
-
-      <!-- Daemon Resource Utilization Cards -->
-      <div class="card" style="grid-column: 1 / -1; margin-bottom: 0.5rem;">
-        <h3 style="margin-top: 0; color: #f0f6fc;">⚙️ Live Daemon Resource Footprint (Omarchy Host)</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: 0.75rem;">
-          
-          <!-- repo-agent resource card -->
-          <div style="background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 1rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-              <strong style="color: #58a6ff;">repo-agent.service</strong>
-              <span id="repo-status-badge" class="badge badge-merged">ACTIVE</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
-              <span style="color: #8b949e;">Memory:</span>
-              <span id="repo-mem" style="color: #f0f6fc; font-family: monospace;">--</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
-              <span style="color: #8b949e;">CPU Usage:</span>
-              <span id="repo-cpu" style="color: #f0f6fc; font-family: monospace;">--</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; font-size: 0.82rem;">
-              <span style="color: #8b949e;">Uptime:</span>
-              <span id="repo-uptime" style="color: #f0f6fc; font-family: monospace;">--</span>
-            </div>
-          </div>
-
-          <!-- scraper-agent resource card -->
-          <div style="background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 1rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-              <strong style="color: #3fb950;">scraper-agent.service</strong>
-              <span id="scraper-status-badge" class="badge badge-merged">ACTIVE</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
-              <span style="color: #8b949e;">Memory:</span>
-              <span id="scraper-mem" style="color: #f0f6fc; font-family: monospace;">--</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
-              <span style="color: #8b949e;">CPU Usage:</span>
-              <span id="scraper-cpu" style="color: #f0f6fc; font-family: monospace;">--</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; font-size: 0.82rem;">
-              <span style="color: #8b949e;">Uptime:</span>
-              <span id="scraper-uptime" style="color: #f0f6fc; font-family: monospace;">--</span>
-            </div>
-          </div>
-
-          <!-- sqlite database card -->
-          <div style="background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 1rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-              <strong style="color: #f0883e;">intel_cache.db</strong>
-              <span class="badge" style="background: #d29922; color: #000;">WAL MODE</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
-              <span style="color: #8b949e;">CISA KEV Signatures:</span>
-              <span id="db-cisa" style="color: #f0f6fc; font-family: monospace;">1,731</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
-              <span style="color: #8b949e;">Academic Preprints:</span>
-              <span id="db-papers" style="color: #f0f6fc; font-family: monospace;">8</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
-              <span style="color: #8b949e;">DB Size:</span>
-              <span id="db-size" style="color: #f0f6fc; font-family: monospace;">--</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; font-size: 0.82rem;">
-              <span style="color: #8b949e;">Last Vacuum:</span>
-              <span id="db-vacuum" style="color: #f0f6fc; font-family: monospace;">--</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Agent Daemon Infrastructure Status Block -->
-      <div class="card" style="grid-column: 1 / -1; margin-bottom: 0.5rem;">
-        <h3 style="margin-top: 0; color: #f0f6fc;">🤖 Autonomous Agent Daemons & Infrastructure</h3>
-        <div id="daemons-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 0.75rem;">
-          <!-- Rendered dynamically via JS -->
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <h2>📦 Active Monitored Repositories</h2>
-          <span class="badge badge-uptodate" id="repo-count-badge">0 Repos</span>
-        </div>
-        <ul id="repo-list"><li>Loading monitored repositories...</li></ul>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <h2>🚀 Automated Maintenance Pull Requests</h2>
-          <span class="badge badge-merged" id="pr-count-badge">0 PRs</span>
-        </div>
-        <ul id="pr-list"><li>Loading automated pull requests...</li></ul>
-      </div>
-
-      <!-- Enhanced Observability Table & Trigger Panel -->
-      <div class="card" style="grid-column: 1 / -1; margin-top: 1rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
-          <div>
-            <h3 style="margin: 0; color: #f0f6fc;">🚀 Automated Remediation & Audit Timeline</h3>
-            <span style="font-size: 0.8rem; color: #8b949e;">Live event logs, merge durations, and intelligence links</span>
-          </div>
-          
-          <div style="display: flex; gap: 0.75rem; align-items: center;">
-            <span id="pr-counter" class="badge badge-open">0 Dispatched</span>
-            <button id="dispatch-btn" onclick="triggerAudit()" style="background: #238636; color: #fff; border: 1px solid #2ea043; border-radius: 6px; padding: 0.4rem 0.8rem; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: background 0.2s;">
-              ↻ Trigger Scan Now
-            </button>
-          </div>
-        </div>
-
-        <!-- Optional PAT input modal/prompt for authenticated dispatch -->
-        <div id="dispatch-status" style="display: none; padding: 0.5rem 0.75rem; margin-bottom: 1rem; border-radius: 6px; font-size: 0.85rem;"></div>
-
-        <div style="overflow-x: auto;">
-          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.86rem;">
-            <thead>
-              <tr style="border-bottom: 2px solid #30363d; color: #8b949e;">
-                <th style="padding: 0.75rem 0.5rem;">Repository</th>
-                <th style="padding: 0.75rem 0.5rem;">Status</th>
-                <th style="padding: 0.75rem 0.5rem;">Upgrade Patch</th>
-                <th style="padding: 0.75rem 0.5rem;">Intelligence & Compliance</th>
-                <th style="padding: 0.75rem 0.5rem;">Dispatched</th>
-                <th style="padding: 0.75rem 0.5rem;">Resolution Time</th>
-              </tr>
-            </thead>
-            <tbody id="remediation-rows">
-              <tr><td colspan="6" style="padding: 1rem; text-align: center; color: #8b949e;">Loading live run records...</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+    <!-- Detailed System Overview -->
+    <div style="background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 1.25rem; margin-top: 1.25rem;">
+      <h3 style="color: #58a6ff; font-size: 1.05rem; margin-bottom: 0.5rem;">About This Project</h3>
+      <p style="color: #c9d1d9; font-size: 0.92rem; margin: 0 0 0.75rem 0;">
+        This platform is a fully autonomous, closed-loop CI/CD intelligence and continuous remediation pipeline.
+        Operating as decoupled systemd user daemons on an Arch Linux workstation (Omarchy), the system audits an entire
+        fleet of personal and organization GitHub repositories, identifies security vulnerabilities and out-of-date GitHub Actions,
+        and automatically prepares, opens, and squash-merges remediation pull requests.
+      </p>
+      <p style="color: #8b949e; font-size: 0.88rem; margin: 0;">
+        Intelligence is harvested asynchronously from the CISA Known Exploited Vulnerabilities (KEV) catalog, NIST SP 800-218 guidelines,
+        arXiv cs.SE/cs.CR preprints, and OpenAlex citations. Feed records and upstream GitHub Action release tags are cached in an embedded
+        SQLite database running in Write-Ahead Logging (WAL) mode to protect GitHub API limits. Remote failure detection runs continuously
+        on a companion Windows machine via an SSH polling watchdog that triggers native Windows 10/11 desktop notifications and audio alarms on service failure.
+      </p>
     </div>
+  </header>
 
-    <footer>
-      <p>Powered by <strong>Omarchy CI Orchestrator</strong> • Two-Daemon Architecture on Arch Linux • Telemetry published continuously via GitHub Pages</p>
-    </footer>
+  <!-- Metric Counters Grid -->
+  <div class="grid-metrics">
+    <div class="card" style="margin-bottom: 0;">
+      <div class="metric-label">Fleet Repositories</div>
+      <div id="metric-repos" class="metric-value">--</div>
+      <div style="font-size: 0.75rem; color: #8b949e; margin-top: 0.25rem;">Total tracked across all targets</div>
+    </div>
+    <div class="card" style="margin-bottom: 0;">
+      <div class="metric-label">Remediations Dispatched</div>
+      <div id="metric-prs" class="metric-value">--</div>
+      <div style="font-size: 0.75rem; color: #8b949e; margin-top: 0.25rem;">Automated chore pull requests</div>
+    </div>
+    <div class="card" style="margin-bottom: 0;">
+      <div class="metric-label">CISA KEV Signatures</div>
+      <div id="metric-cisa" class="metric-value">1,731</div>
+      <div style="font-size: 0.75rem; color: #8b949e; margin-top: 0.25rem;">Vulnerabilities actively indexed</div>
+    </div>
+    <div class="card" style="margin-bottom: 0;">
+      <div class="metric-label">Academic Citations</div>
+      <div id="metric-academic" class="metric-value">8</div>
+      <div style="font-size: 0.75rem; color: #8b949e; margin-top: 0.25rem;">arXiv cs.SE and OpenAlex pool</div>
+    </div>
   </div>
 
-  <script>
-    function formatTimestamp(isoStr) {
-      if (!isoStr || isoStr.startsWith('0001-01-01')) return '<span style="color: #484f58;">—</span>';
-      const d = new Date(isoStr);
-      if (isNaN(d.getTime())) return '<span style="color: #484f58;">—</span>';
-      return `<span title="${d.toISOString()}">${d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} ${d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}</span>`;
-    }
+  <!-- Section 1: Multi-Agent Architecture Topology -->
+  <section class="card">
+    <h3>1. Multi-Agent Architecture Topology</h3>
+    <div class="section-desc">
+      Visual map of the end-to-end telemetry pipeline. Demonstrates the unidirectional flow of threat intelligence from external authorities
+      into the scraper daemon, cached persistence in SQLite WAL storage, inter-process communication (IPC) into the repository governance engine,
+      remediation output to GitHub, and remote watchdog polling to the Windows operations host.
+    </div>
 
-    function calculateDuration(createdIso, resolvedIso) {
-      if (!createdIso || !resolvedIso || resolvedIso.startsWith('0001-01-01')) return '<span style="color: #8b949e;">In Progress</span>';
-      const dCreated = new Date(createdIso);
-      const dResolved = new Date(resolvedIso);
-      if (isNaN(dCreated.getTime()) || isNaN(dResolved.getTime())) return '<span style="color: #8b949e;">In Progress</span>';
-      const diffMs = dResolved - dCreated;
-      if (diffMs < 0) return '0s';
-      
-      const sec = Math.floor(diffMs / 1000);
-      if (sec < 60) return `<span style="color: #3fb950; font-weight: 600;">${sec}s</span>`;
-      const min = Math.floor(sec / 60);
-      const remainSec = sec % 60;
-      if (min < 60) return `<span style="color: #3fb950; font-weight: 600;">${min}m ${remainSec}s</span>`;
-      const hrs = Math.floor(min / 60);
-      return `<span style="color: #58a6ff; font-weight: 600;">${hrs}h ${min % 60}m</span>`;
-    }
+    <div style="background: #090d13; border: 1px solid #30363d; border-radius: 8px; padding: 1.25rem; overflow-x: auto;">
+      <svg viewBox="0 0 960 210" style="width: 100%; min-width: 760px; height: auto; font-family: -apple-system, BlinkMacSystemFont, sans-serif;">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#58a6ff" />
+          </marker>
+          <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#3fb950" />
+          </marker>
+        </defs>
 
-    function extractIntelligenceBadges(bodyText) {
-      if (!bodyText) return '<span style="color: #484f58;">Standard Node20/Timeout</span>';
-      
-      let html = '';
-      // Match CISA CVEs (e.g., CVE-2024-XXXX)
-      const cves = bodyText.match(/CVE-\d{4}-\d+/g);
-      if (cves) {
-        [...new Set(cves)].slice(0, 2).forEach(cve => {
-          html += `<a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" style="text-decoration: none; display: inline-block; background: #da3633; color: #fff; padding: 0.15rem 0.35rem; border-radius: 4px; font-size: 0.72rem; margin-right: 0.3rem;">${cve}</a>`;
-        });
-      }
+        <!-- External Intelligence Node -->
+        <rect x="15" y="25" width="185" height="155" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+        <text x="30" y="55" fill="#58a6ff" font-weight="bold" font-size="13">External Intelligence</text>
+        <text x="30" y="80" fill="#8b949e" font-size="11">• CISA KEV (1,731)</text>
+        <text x="30" y="100" fill="#8b949e" font-size="11">• arXiv cs.SE / OpenAlex</text>
+        <text x="30" y="120" fill="#8b949e" font-size="11">• NIST SP 800-218</text>
+        <text x="30" y="140" fill="#8b949e" font-size="11">• GitHub Action Releases</text>
 
-      // Match arXiv Preprints
-      const arxiv = bodyText.match(/arXiv\s*(cs\.[A-Z]{2}|\d{4}\.\d+)?/i);
-      if (arxiv && (bodyText.includes('arXiv') || bodyText.includes('arxiv'))) {
-        html += `<span style="display: inline-block; background: #8957e5; color: #fff; padding: 0.15rem 0.35rem; border-radius: 4px; font-size: 0.72rem; margin-right: 0.3rem;">arXiv cs.SE</span>`;
-      }
+        <!-- Arrow: External -> Scraper -->
+        <line x1="200" y1="102" x2="255" y2="102" stroke="#58a6ff" stroke-width="2" marker-end="url(#arrow)"/>
 
-      // Match NIST Guidelines
-      if (bodyText.includes('NIST SP 800-218')) {
-        html += `<span style="display: inline-block; background: #1f6feb; color: #fff; padding: 0.15rem 0.35rem; border-radius: 4px; font-size: 0.72rem; margin-right: 0.3rem;">NIST SP 800-218</span>`;
-      }
+        <!-- Scraper Agent Node -->
+        <rect x="265" y="25" width="195" height="155" rx="8" fill="#161b22" stroke="#238636" stroke-width="2"/>
+        <text x="280" y="55" fill="#3fb950" font-weight="bold" font-size="14">scraper-agent</text>
+        <text x="280" y="75" fill="#8b949e" font-size="11">FastAPI :8484 (Localhost)</text>
+        <text x="280" y="100" fill="#c9d1d9" font-size="11">Storage Engine:</text>
+        <text x="280" y="120" fill="#f0883e" font-family="monospace" font-size="11">intel_cache.db (WAL)</text>
+        <text x="280" y="145" id="scraper-diag-metrics" fill="#8b949e" font-size="10">Mem: -- | CPU: --</text>
 
-      // Match Academic Research citations
-      if (bodyText.includes('Global University Research') || bodyText.includes('RCSB PDB AI Help Desk') || bodyText.includes('OpenAlex')) {
-        html += `<span style="display: inline-block; background: #ab7df826; color: #bc8cff; border: 1px solid rgba(171,125,248,0.4); padding: 0.15rem 0.35rem; border-radius: 4px; font-size: 0.72rem; margin-right: 0.3rem;">Academic Citations</span>`;
-      }
+        <!-- Arrow: Scraper -> Repo Agent -->
+        <line x1="460" y1="102" x2="515" y2="102" stroke="#58a6ff" stroke-width="2" marker-end="url(#arrow)"/>
+        <text x="468" y="93" fill="#8b949e" font-size="10">Local IPC</text>
 
-      // Match CISA & FinOps Hardening
-      if (bodyText.includes('CISA & FinOps') || bodyText.includes('timeout-minutes')) {
-        html += `<span style="display: inline-block; background: #23863626; color: #3fb950; border: 1px solid rgba(46,160,67,0.4); padding: 0.15rem 0.35rem; border-radius: 4px; font-size: 0.72rem;">CISA/FinOps</span>`;
-      }
+        <!-- Repo Agent Node -->
+        <rect x="525" y="25" width="195" height="155" rx="8" fill="#161b22" stroke="#1f6feb" stroke-width="2"/>
+        <text x="540" y="55" fill="#58a6ff" font-weight="bold" font-size="14">repo-agent</text>
+        <text x="540" y="75" fill="#8b949e" font-size="11">Continuous Remediation</text>
+        <text x="540" y="100" fill="#c9d1d9" font-size="11">• Workflow Security Audits</text>
+        <text x="540" y="120" fill="#c9d1d9" font-size="11">• Auto Pull Request Dispatch</text>
+        <text x="540" y="145" id="repo-diag-metrics" fill="#8b949e" font-size="10">Mem: -- | CPU: --</text>
 
-      return html || '<span style="color: #8b949e; font-size: 0.78rem;">Cost & Runtime Hardening</span>';
-    }
+        <!-- Arrow: Repo Agent -> GitHub Fleet -->
+        <line x1="720" y1="102" x2="775" y2="102" stroke="#3fb950" stroke-width="2" marker-end="url(#arrow-green)"/>
+        <text x="730" y="93" fill="#3fb950" font-size="10">Auto PRs</text>
 
-    async function triggerAudit() {
-      const btn = document.getElementById('dispatch-btn');
-      const statusBox = document.getElementById('dispatch-status');
-      
-      let token = localStorage.getItem('gh_dispatch_token');
-      if (!token) {
-        token = prompt('Enter a GitHub Personal Access Token (repo scope) to trigger on-demand scan:');
-        if (token) {
-          localStorage.setItem('gh_dispatch_token', token.trim());
-        } else {
-          return;
-        }
-      }
+        <!-- Fleet & Watchdog Node -->
+        <rect x="785" y="25" width="160" height="155" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+        <text x="800" y="55" fill="#f0f6fc" font-weight="bold" font-size="13">GitHub Fleet</text>
+        <text x="800" y="75" fill="#8b949e" font-size="11">44 Targets Governed</text>
+        <text x="800" y="95" fill="#8b949e" font-size="11">GraphQL Auto-Merge</text>
+        <line x1="795" y1="110" x2="935" y2="110" stroke="#30363d" stroke-width="1"/>
+        <text x="800" y="130" fill="#d29922" font-weight="bold" font-size="12">Windows Alert</text>
+        <text x="800" y="150" fill="#8b949e" font-size="10">SSH Poll (15s cycle)</text>
+      </svg>
+    </div>
+  </section>
 
-      btn.disabled = true;
-      btn.style.opacity = '0.6';
-      btn.textContent = 'Dispatching...';
+  <!-- Section 2: Host Daemon Resource Footprint -->
+  <section class="card">
+    <h3>2. Host Daemon Resource Footprint (Omarchy Host)</h3>
+    <div class="section-desc">
+      Real-time health telemetry captured directly from Omarchy user units. Monitors process memory footprint (RSS), CPU percentage,
+      main PID, process uptime, and the SQLite storage footprint. Includes execution status for automated database checkpointing and vacuuming.
+    </div>
 
-      statusBox.style.display = 'block';
-      statusBox.style.background = '#161b22';
-      statusBox.style.border = '1px solid #30363d';
-      statusBox.style.color = '#c9d1d9';
-      statusBox.textContent = 'Sending repository dispatch to GitHub Actions...';
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+      <!-- repo-agent resource card -->
+      <div style="background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <strong style="color: #58a6ff;">repo-agent.service</strong>
+          <span id="repo-status-badge" class="badge badge-merged">ACTIVE</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
+          <span style="color: #8b949e;">Resident Memory:</span>
+          <span id="repo-mem" style="color: #f0f6fc; font-family: monospace;">--</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
+          <span style="color: #8b949e;">CPU Allocation:</span>
+          <span id="repo-cpu" style="color: #f0f6fc; font-family: monospace;">--</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.82rem;">
+          <span style="color: #8b949e;">Service Uptime:</span>
+          <span id="repo-uptime" style="color: #f0f6fc; font-family: monospace;">--</span>
+        </div>
+      </div>
 
-      try {
-        const resp = await fetch('https://api.github.com/repos/FreeFades2Black/omarchy-ci-orchestrator/dispatches', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Accept': 'application/vnd.github+json'
-          },
-          body: JSON.stringify({ event_type: 'trigger-audit' })
-        });
+      <!-- scraper-agent resource card -->
+      <div style="background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <strong style="color: #3fb950;">scraper-agent.service</strong>
+          <span id="scraper-status-badge" class="badge badge-merged">ACTIVE</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
+          <span style="color: #8b949e;">Resident Memory:</span>
+          <span id="scraper-mem" style="color: #f0f6fc; font-family: monospace;">--</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
+          <span style="color: #8b949e;">CPU Allocation:</span>
+          <span id="scraper-cpu" style="color: #f0f6fc; font-family: monospace;">--</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.82rem;">
+          <span style="color: #8b949e;">Service Uptime:</span>
+          <span id="scraper-uptime" style="color: #f0f6fc; font-family: monospace;">--</span>
+        </div>
+      </div>
 
-        if (resp.status === 204) {
-          statusBox.style.borderColor = '#238636';
-          statusBox.style.color = '#3fb950';
-          statusBox.textContent = '✓ Workflow dispatched successfully! Re-indexing fleet now. Refreshing page in 10s...';
-          setTimeout(() => location.reload(), 10000);
-        } else {
-          throw new Error(`GitHub API returned status ${resp.status}`);
-        }
-      } catch (err) {
-        statusBox.style.borderColor = '#da3633';
-        statusBox.style.color = '#f85149';
-        statusBox.textContent = `Dispatch failed: ${err.message}. Check token permissions.`;
-        localStorage.removeItem('gh_dispatch_token');
-      } finally {
-        btn.disabled = false;
-        btn.style.opacity = '1';
-        btn.textContent = '↻ Trigger Scan Now';
-      }
-    }
+      <!-- SQLite Storage Engine Card -->
+      <div style="background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <strong style="color: #f0883e;">intel_cache.db</strong>
+          <span class="badge" style="background: #d29922; color: #0d1117;">WAL MODE</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
+          <span style="color: #8b949e;">Database File Size:</span>
+          <span id="db-size" style="color: #f0f6fc; font-family: monospace;">--</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
+          <span style="color: #8b949e;">Last Vacuum Run:</span>
+          <span id="db-vacuum" style="color: #f0f6fc; font-family: monospace;">--</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.82rem;">
+          <span style="color: #8b949e;">Prometheus Endpoint:</span>
+          <span style="color: #58a6ff; font-family: monospace;">:8484/metrics</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    // Render Telemetry
-    fetch('./telemetry.json')
-      .then(res => {
-        if (!res.ok) throw new Error("Network response was not ok");
-        return res.json();
-      })
-      .then(data => {
-        const updateDate = data.last_updated ? new Date(data.last_updated).toLocaleString() : "Just now";
-        document.getElementById('last-updated').textContent = `Daemon Last Synced: ${updateDate}`;
+  <!-- Section 3: Active Monitored Repositories Fleet -->
+  <section class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+      <h3 style="margin: 0;">3. Active Monitored Repositories Fleet</h3>
+      <span id="fleet-count-badge" class="badge badge-open">0 Repositories</span>
+    </div>
+    <div class="section-desc">
+      The complete inventory of repositories actively scanned and audited by the daemon. Includes all source repositories and forks
+      across the personal profile (FreeFades2Black) and organization namespaces (For-Your-Service). Each target is evaluated for CI workflow
+      timeouts, hardened action pins, and documentation updates.
+    </div>
 
-        const repos = Array.isArray(data.managed_repos) ? data.managed_repos : [];
-        const prs = Array.isArray(data.dispatched_prs) ? data.dispatched_prs : (data.dispatched_prs && Array.isArray(data.dispatched_prs.value) ? data.dispatched_prs.value : []);
+    <div id="repo-fleet-container" class="repo-grid">
+      <div style="padding: 1rem; color: #8b949e;">Loading repository inventory...</div>
+    </div>
+  </section>
 
-        document.getElementById('stat-repos').textContent = repos.length;
-        document.getElementById('stat-prs').textContent = prs.length;
-        
-        const cisaVal = data.cisa_count || (data.engine_status && data.engine_status.cisa_cves_indexed) || 1731;
-        document.getElementById('stat-cisa').textContent = Number(cisaVal).toLocaleString();
+  <!-- Section 4: Automated Remediation & Audit Timeline -->
+  <section class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 0.25rem;">
+      <h3 style="margin: 0;">4. Automated Remediation & Audit Timeline</h3>
+      <div style="display: flex; gap: 0.75rem; align-items: center;">
+        <span id="pr-counter" class="badge badge-open">0 Tracked</span>
+        <button id="dispatch-btn" onclick="triggerAudit()" style="background: #238636; color: #fff; border: 1px solid #2ea043; border-radius: 6px; padding: 0.35rem 0.75rem; font-size: 0.85rem; font-weight: 600; cursor: pointer;">
+          ↻ Trigger Scan Now
+        </button>
+      </div>
+    </div>
+    <div class="section-desc">
+      Audit log of all pull requests dispatched by repo-agent. Tracks remediation patch status, time from branch creation to squash merge,
+      associated CISA KEV vulnerability signatures, NIST SP 800-218 requirements, and academic literature citations.
+    </div>
 
-        const academicVal = data.academic_count || (data.engine_status && data.engine_status.academic_citations_indexed) || 8;
-        document.getElementById('stat-academic').textContent = Number(academicVal).toLocaleString();
+    <div id="dispatch-status" style="display: none; padding: 0.5rem 0.75rem; margin-bottom: 1rem; border-radius: 6px; font-size: 0.85rem;"></div>
 
-        // Bind host telemetry to resource cards & SVG diagram
-        if (data.host_telemetry) {
-          const host = data.host_telemetry;
-          const repo = host.repo_agent || {};
-          const scraper = host.scraper_agent || {};
-          const db = host.sqlite_intel || {};
-          const hbBadge = document.getElementById('topology-heartbeat');
+    <div style="overflow-x: auto;">
+      <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.86rem;">
+        <thead>
+          <tr style="border-bottom: 2px solid #30363d; color: #8b949e;">
+            <th style="padding: 0.75rem 0.5rem;">Target Repository</th>
+            <th style="padding: 0.75rem 0.5rem;">State</th>
+            <th style="padding: 0.75rem 0.5rem;">Remediation Title</th>
+            <th style="padding: 0.75rem 0.5rem;">Standards & Citations</th>
+            <th style="padding: 0.75rem 0.5rem;">Dispatched (UTC)</th>
+            <th style="padding: 0.75rem 0.5rem;">Resolution Time</th>
+          </tr>
+        </thead>
+        <tbody id="remediation-rows">
+          <tr><td colspan="6" style="padding: 1rem; text-align: center; color: #8b949e;">Loading audit records...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-          // Host heartbeat with SLA Freshness Indicator
-          if (host.heartbeat_utc && hbBadge) {
-            const hbDate = new Date(host.heartbeat_utc);
-            const now = new Date();
-            const diffMinutes = Math.floor((now - hbDate) / 60000);
+  <!-- Footer -->
+  <footer style="text-align: center; font-size: 0.8rem; color: #8b949e; border-top: 1px solid #21262d; padding-top: 1.5rem;">
+    Powered by Omarchy CI Orchestrator | Autonomous Two-Daemon Systemd Architecture on Arch Linux
+  </footer>
 
-            if (diffMinutes > 30) {
-              hbBadge.textContent = `▲ Stale Heartbeat: ${diffMinutes}m ago`;
-              hbBadge.style.color = '#f85149'; // Red / Critical
-            } else if (diffMinutes > 15) {
-              hbBadge.textContent = `● Degraded Heartbeat: ${diffMinutes}m ago`;
-              hbBadge.style.color = '#d29922'; // Amber / Warning
-            } else {
-              hbBadge.textContent = `● Live Heartbeat: ${hbDate.toLocaleTimeString()}`;
-              hbBadge.style.color = '#3fb950'; // Green / Normal
-            }
-          }
+</div>
 
-          // Update repo-agent metrics
-          if (document.getElementById('repo-mem')) document.getElementById('repo-mem').textContent = repo.memory || 'N/A';
-          if (document.getElementById('repo-cpu')) document.getElementById('repo-cpu').textContent = repo.cpu || '0.0%';
-          if (document.getElementById('repo-uptime')) document.getElementById('repo-uptime').textContent = repo.uptime || 'online';
-          if (document.getElementById('repo-status-badge')) document.getElementById('repo-status-badge').textContent = (repo.status || 'ACTIVE').toUpperCase();
-          if (document.getElementById('repo-diag-metrics')) document.getElementById('repo-diag-metrics').textContent = `Mem: ${repo.memory || '--'} | CPU: ${repo.cpu || '--'}`;
+<script>
+  function formatTimestamp(isoStr) {
+    if (!isoStr) return '<span style="color: #484f58;">N/A</span>';
+    const d = new Date(isoStr);
+    return `<span title="${d.toISOString()}">${d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} ${d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}</span>`;
+  }
 
-          // Update scraper-agent metrics
-          if (document.getElementById('scraper-mem')) document.getElementById('scraper-mem').textContent = scraper.memory || 'N/A';
-          if (document.getElementById('scraper-cpu')) document.getElementById('scraper-cpu').textContent = scraper.cpu || '0.0%';
-          if (document.getElementById('scraper-uptime')) document.getElementById('scraper-uptime').textContent = scraper.uptime || 'online';
-          if (document.getElementById('scraper-status-badge')) document.getElementById('scraper-status-badge').textContent = (scraper.status || 'ACTIVE').toUpperCase();
-          if (document.getElementById('scraper-diag-metrics')) document.getElementById('scraper-diag-metrics').textContent = `Mem: ${scraper.memory || '--'} | CPU: ${scraper.cpu || '--'}`;
+  function calculateDuration(createdIso, resolvedIso) {
+    if (!createdIso || !resolvedIso) return '<span style="color: #8b949e;">In Progress</span>';
+    const diffMs = new Date(resolvedIso) - new Date(createdIso);
+    if (diffMs < 0) return '0s';
+    
+    const sec = Math.floor(diffMs / 1000);
+    if (sec < 60) return `<span style="color: #3fb950; font-weight: 600;">${sec}s</span>`;
+    const min = Math.floor(sec / 60);
+    const remainSec = sec % 60;
+    if (min < 60) return `<span style="color: #3fb950; font-weight: 600;">${min}m ${remainSec}s</span>`;
+    const hrs = Math.floor(min / 60);
+    return `<span style="color: #58a6ff; font-weight: 600;">${hrs}h ${min % 60}m</span>`;
+  }
 
-          // Update database stats
-          if (db.cisa_cves && document.getElementById('db-cisa')) document.getElementById('db-cisa').textContent = Number(db.cisa_cves).toLocaleString();
-          if (db.academic_papers && document.getElementById('db-papers')) document.getElementById('db-papers').textContent = Number(db.academic_papers).toLocaleString();
-          if (db.db_size_bytes && document.getElementById('db-size')) {
-            const kb = (db.db_size_bytes / 1024).toFixed(1);
-            document.getElementById('db-size').textContent = `${kb} KB`;
-          }
-          if (document.getElementById('db-vacuum')) {
-            document.getElementById('db-vacuum').textContent = (db.last_vacuum_run && db.last_vacuum_run !== 'N/A')
-              ? new Date(db.last_vacuum_run).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
-              : 'Pending';
-          }
-        }
-
-        // Daemons topology
-        if (data.daemons && document.getElementById('daemons-grid')) {
-          const daemonsGrid = document.getElementById('daemons-grid');
-          daemonsGrid.innerHTML = data.daemons.map(d => `
-            <div style="background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 1rem;">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                <strong style="color: #58a6ff; font-size: 0.95rem;">${d.name}</strong>
-                <span class="badge badge-merged">${d.status}</span>
-              </div>
-              <div style="font-size: 0.8rem; color: #8b949e; margin-bottom: 0.3rem;">Host: <code style="color: #c9d1d9;">${d.host}</code></div>
-              <div style="font-size: 0.8rem; color: #8b949e; margin-bottom: 0.3rem;">Role: ${d.role}</div>
-              <div style="font-size: 0.75rem; color: #3fb950; font-family: monospace;">${d.service || d.endpoint || d.mechanism || ''}</div>
-            </div>
-          `).join('');
-        }
-
-        // Repos list
-        const repoList = document.getElementById('repo-list');
-        document.getElementById('repo-count-badge').textContent = `${repos.length} Repos`;
-        if (repos.length === 0) {
-          repoList.innerHTML = '<li><span class="repo-meta">No monitored repositories found.</span></li>';
-        } else {
-          repoList.innerHTML = repos.map(r => `
-            <li>
-              <div style="display:flex; justify-content:space-between; align-items:center;">
-                <a href="https://github.com/${r.nameWithOwner}" target="_blank"><strong>${r.nameWithOwner}</strong></a>
-                <span class="badge ${r.status === 'up-to-date' ? 'badge-uptodate' : 'badge-open'}">${(r.status || 'MONITORED').toUpperCase()}</span>
-              </div>
-              <div class="repo-meta">${r.description || 'Automated IaC & CI/CD workflow governance'}</div>
-            </li>
-          `).join('');
-        }
-
-        // PRs summary list
-        const prList = document.getElementById('pr-list');
-        document.getElementById('pr-count-badge').textContent = `${prs.length} Dispatched`;
-        if (prs.length === 0) {
-          prList.innerHTML = '<li><span class="repo-meta">No automated remediation pull requests found.</span></li>';
-        } else {
-          prList.innerHTML = prs.map(p => {
-            const stateUpper = (p.state || 'OPEN').toUpperCase();
-            const badgeClass = stateUpper === 'MERGED' ? 'badge-merged' : (stateUpper === 'OPEN' ? 'badge-open' : 'badge-closed');
-            return `
-              <li>
-                <div style="display:flex; align-items:flex-start; gap:0.5rem;">
-                  <span class="badge ${badgeClass}">${stateUpper}</span>
-                  <div style="flex:1;">
-                    <a href="${p.url}" target="_blank"><strong>#${p.number}</strong> ${p.title}</a>
-                    <div class="repo-meta">Repository: <strong>${p.repository.nameWithOwner}</strong></div>
-                  </div>
-                </div>
-              </li>
-            `;
-          }).join('');
-        }
-
-        // Enhanced Observability Table
-        document.getElementById('pr-counter').textContent = `${prs.length} Dispatched`;
-        const tbody = document.getElementById('remediation-rows');
-        if (!prs.length) {
-          tbody.innerHTML = '<tr><td colspan="6" style="padding: 1rem; text-align: center; color: #8b949e;">No remediation runs recorded yet.</td></tr>';
-          return;
-        }
-
-        tbody.innerHTML = prs.map(pr => {
-          const stateUpper = (pr.state || 'OPEN').toUpperCase();
-          const badgeClass = stateUpper === 'MERGED' ? 'badge-merged' : (stateUpper === 'OPEN' ? 'badge-open' : 'badge-closed');
-          const resolvedDate = pr.mergedAt || (stateUpper === 'MERGED' || stateUpper === 'CLOSED' ? pr.closedAt : null);
-          const durationHtml = calculateDuration(pr.createdAt, resolvedDate);
-          const intelBadges = extractIntelligenceBadges(pr.body);
-          
-          return `
-            <tr style="border-bottom: 1px solid #21262d;">
-              <td style="padding: 0.65rem 0.5rem; font-weight: 600;">
-                <a href="https://github.com/${pr.repository.nameWithOwner}" target="_blank" style="color: #58a6ff; text-decoration: none;">
-                  ${pr.repository.nameWithOwner}
-                </a>
-              </td>
-              <td style="padding: 0.65rem 0.5rem;">
-                <span class="badge ${badgeClass}">${stateUpper}</span>
-              </td>
-              <td style="padding: 0.65rem 0.5rem;">
-                <a href="${pr.url}" target="_blank" style="color: #c9d1d9; text-decoration: none;">
-                  #${pr.number} ${pr.title}
-                </a>
-              </td>
-              <td style="padding: 0.65rem 0.5rem;">
-                ${intelBadges}
-              </td>
-              <td style="padding: 0.65rem 0.5rem; color: #8b949e;">
-                ${formatTimestamp(pr.createdAt)}
-              </td>
-              <td style="padding: 0.65rem 0.5rem;">
-                ${durationHtml}
-              </td>
-            </tr>
-          `;
-        }).join('');
-      })
-      .catch(err => {
-        console.error(err);
-        document.getElementById('last-updated').textContent = "Failed to sync telemetry.";
+  function extractIntelligenceBadges(bodyText) {
+    if (!bodyText) return '<span style="color: #484f58;">Standard Node20/Timeout</span>';
+    
+    let html = '';
+    const cves = bodyText.match(/CVE-\d{4}-\d+/g);
+    if (cves) {
+      [...new Set(cves)].slice(0, 2).forEach(cve => {
+        html += `<a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" style="text-decoration: none; display: inline-block; background: #da3633; color: #fff; padding: 0.15rem 0.35rem; border-radius: 4px; font-size: 0.72rem; margin-right: 0.3rem;">${cve}</a>`;
       });
-  </script>
+    }
+
+    const arxiv = bodyText.match(/arXiv\s*(cs\.[A-Z]{2}|\d{4}\.\d+)/i);
+    if (arxiv) {
+      html += `<span style="display: inline-block; background: #8957e5; color: #fff; padding: 0.15rem 0.35rem; border-radius: 4px; font-size: 0.72rem; margin-right: 0.3rem;">arXiv cs.SE</span>`;
+    }
+
+    if (bodyText.includes('NIST SP 800-218')) {
+      html += `<span style="display: inline-block; background: #1f6feb; color: #fff; padding: 0.15rem 0.35rem; border-radius: 4px; font-size: 0.72rem;">NIST SP 800-218</span>`;
+    }
+
+    return html || '<span style="color: #8b949e; font-size: 0.78rem;">Workflow Security Hardening</span>';
+  }
+
+  async function triggerAudit() {
+    const btn = document.getElementById('dispatch-btn');
+    const statusBox = document.getElementById('dispatch-status');
+    
+    let token = localStorage.getItem('gh_dispatch_token');
+    if (!token) {
+      token = prompt('Enter a GitHub Personal Access Token (repo scope) to trigger on-demand scan:');
+      if (token) {
+        localStorage.setItem('gh_dispatch_token', token);
+      } else {
+        return;
+      }
+    }
+
+    btn.disabled = true;
+    btn.style.opacity = '0.6';
+    btn.textContent = 'Dispatching...';
+
+    statusBox.style.display = 'block';
+    statusBox.style.background = '#161b22';
+    statusBox.style.border = '1px solid #30363d';
+    statusBox.style.color = '#c9d1d9';
+    statusBox.textContent = 'Sending repository dispatch to GitHub Actions...';
+
+    try {
+      const resp = await fetch('https://api.github.com/repos/FreeFades2Black/omarchy-ci-orchestrator/dispatches', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/vnd.github+json'
+        },
+        body: JSON.stringify({ event_type: 'trigger-audit' })
+      });
+
+      if (resp.status === 204) {
+        statusBox.style.borderColor = '#238636';
+        statusBox.style.color = '#3fb950';
+        statusBox.textContent = 'Workflow dispatched successfully. Re-indexing fleet now. Refreshing page in 10s...';
+        setTimeout(() => location.reload(), 10000);
+      } else {
+        throw new Error(`GitHub API returned status ${resp.status}`);
+      }
+    } catch (err) {
+      statusBox.style.borderColor = '#da3633';
+      statusBox.style.color = '#f85149';
+      statusBox.textContent = `Dispatch failed: ${err.message}. Check token permissions.`;
+      localStorage.removeItem('gh_dispatch_token');
+    } finally {
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      btn.textContent = '↻ Trigger Scan Now';
+    }
+  }
+
+  // Load and Bind Telemetry
+  fetch('./telemetry.json')
+    .then(res => res.json())
+    .then(data => {
+      // 1. Header & Counter Updates
+      document.getElementById('last-updated').textContent = `Telemetry Updated: ${new Date(data.last_updated).toLocaleString()}`;
+      document.getElementById('metric-repos').textContent = data.repo_count || (data.managed_repos ? data.managed_repos.length : '--');
+      document.getElementById('metric-prs').textContent = data.dispatched_prs ? data.dispatched_prs.length : '0';
+      document.getElementById('fleet-count-badge').textContent = `${data.repo_count || data.managed_repos.length} Repositories`;
+      document.getElementById('pr-counter').textContent = `${data.dispatched_prs.length} Dispatched`;
+
+      // 2. Heartbeat & SLA Validation
+      if (data.host_telemetry) {
+        const host = data.host_telemetry;
+        const hbBadge = document.getElementById('topology-heartbeat');
+
+        if (host.heartbeat_utc) {
+          const hbDate = new Date(host.heartbeat_utc);
+          const diffMinutes = Math.floor((new Date() - hbDate) / 60000);
+
+          if (diffMinutes > 30) {
+            hbBadge.textContent = `▲ Stale Heartbeat: ${diffMinutes}m ago`;
+            hbBadge.className = 'badge badge-critical';
+          } else if (diffMinutes > 15) {
+            hbBadge.textContent = `● Degraded Heartbeat: ${diffMinutes}m ago`;
+            hbBadge.className = 'badge badge-warning';
+          } else {
+            hbBadge.textContent = `● Live Heartbeat: ${hbDate.toLocaleTimeString()}`;
+            hbBadge.className = 'badge badge-merged';
+          }
+        }
+
+        // Host Daemon Metrics
+        const repo = host.repo_agent || {};
+        const scraper = host.scraper_agent || {};
+        const db = host.sqlite_intel || {};
+
+        document.getElementById('repo-mem').textContent = repo.memory || 'N/A';
+        document.getElementById('repo-cpu').textContent = repo.cpu || '0.0%';
+        document.getElementById('repo-uptime').textContent = repo.uptime || 'online';
+        document.getElementById('repo-diag-metrics').textContent = `Mem: ${repo.memory || '--'} | CPU: ${repo.cpu || '--'}`;
+
+        document.getElementById('scraper-mem').textContent = scraper.memory || 'N/A';
+        document.getElementById('scraper-cpu').textContent = scraper.cpu || '0.0%';
+        document.getElementById('scraper-uptime').textContent = scraper.uptime || 'online';
+        document.getElementById('scraper-diag-metrics').textContent = `Mem: ${scraper.memory || '--'} | CPU: ${scraper.cpu || '--'}`;
+
+        if (db.db_size_bytes) {
+          const kb = (db.db_size_bytes / 1024).toFixed(1);
+          document.getElementById('db-size').textContent = `${kb} KB`;
+        }
+        if (db.last_vacuum_run) {
+          document.getElementById('db-vacuum').textContent = db.last_vacuum_run !== 'N/A'
+            ? new Date(db.last_vacuum_run).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
+            : 'Pending';
+        }
+      }
+
+      // 3. Render Managed Repositories
+      const fleetContainer = document.getElementById('repo-fleet-container');
+      if (data.managed_repos && data.managed_repos.length > 0) {
+        fleetContainer.innerHTML = data.managed_repos.map(r => `
+          <div class="repo-item">
+            <div style="font-weight: 600; font-size: 0.9rem;">
+              <a href="https://github.com/${r.nameWithOwner}" target="_blank">${r.nameWithOwner}</a>
+            </div>
+            <div style="font-size: 0.78rem; color: #8b949e; margin-top: 0.25rem;">
+              ${r.description || 'Continuous CI/CD workflow security governance'}
+            </div>
+          </div>
+        `).join('');
+      } else {
+        fleetContainer.innerHTML = '<div style="padding: 1rem; color: #8b949e;">No repositories found.</div>';
+      }
+
+      // 4. Render Remediation Table Rows
+      const tbody = document.getElementById('remediation-rows');
+      if (!data.dispatched_prs || !data.dispatched_prs.length) {
+        tbody.innerHTML = '<tr><td colspan="6" style="padding: 1rem; text-align: center; color: #8b949e;">No remediation records found.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = data.dispatched_prs.map(pr => {
+        const badgeClass = pr.state === 'MERGED' ? 'badge-merged' : (pr.state === 'OPEN' ? 'badge-open' : 'badge-closed');
+        const resolvedDate = pr.mergedAt || pr.closedAt;
+        const durationHtml = calculateDuration(pr.createdAt, resolvedDate);
+        const intelBadges = extractIntelligenceBadges(pr.body);
+
+        return `
+          <tr style="border-bottom: 1px solid #21262d;">
+            <td style="padding: 0.65rem 0.5rem; font-weight: 600;">
+              <a href="https://github.com/${pr.repository.nameWithOwner}" target="_blank">
+                ${pr.repository.nameWithOwner}
+              </a>
+            </td>
+            <td style="padding: 0.65rem 0.5rem;">
+              <span class="badge ${badgeClass}">${pr.state}</span>
+            </td>
+            <td style="padding: 0.65rem 0.5rem;">
+              <a href="${pr.url}" target="_blank" style="color: #c9d1d9;">
+                #${pr.number} ${pr.title}
+              </a>
+            </td>
+            <td style="padding: 0.65rem 0.5rem;">
+              ${intelBadges}
+            </td>
+            <td style="padding: 0.65rem 0.5rem; color: #8b949e;">
+              ${formatTimestamp(pr.createdAt)}
+            </td>
+            <td style="padding: 0.65rem 0.5rem;">
+              ${durationHtml}
+            </td>
+          </tr>
+        `;
+      }).join('');
+    })
+    .catch(err => {
+      console.error(err);
+      document.getElementById('last-updated').textContent = "Failed to load telemetry.";
+    });
+</script>
 </body>
 </html>
