@@ -1,96 +1,347 @@
-{
-  "last_updated": "2026-10-01T20:41:49Z",
-  "engine_status": {
-    "scraper_daemon": "healthy",
-    "scraper_version": "2.1.0 (sqlite-backed)",
-    "cisa_cves_indexed": 1731,
-    "academic_citations_indexed": 8,
-    "sqlite_wal_mode": true
-  },
-  "managed_repos": [
-    {
-      "name": "azure-iac-generator",
-      "nameWithOwner": "FreeFades2Black/azure-iac-generator",
-      "description": "Resilient Azure IaC and Configuration Generator for multi-tier Terraform and Ansible",
-      "status": "up-to-date",
-      "updatedAt": "2026-09-30T16:54:55Z"
-    },
-    {
-      "name": "base-docker-web",
-      "nameWithOwner": "FreeFades2Black/base-docker-web",
-      "description": "Base Docker web service CI/CD template with automated security hardening",
-      "status": "up-to-date",
-      "updatedAt": "2026-09-30T16:57:25Z"
-    },
-    {
-      "name": "For-Your-Service",
-      "nameWithOwner": "For-Your-Service/For-Your-Service",
-      "description": "Enterprise platform services and automated GitOps engine",
-      "status": "up-to-date",
-      "updatedAt": "2026-09-30T16:39:43Z"
-    },
-    {
-      "name": "demo-repository",
-      "nameWithOwner": "For-Your-Service/demo-repository",
-      "description": "Demonstration repository for CI/CD workflow automation and auto-merge validation",
-      "status": "up-to-date",
-      "updatedAt": "2026-09-30T16:39:30Z"
-    },
-    {
-      "name": "defense-gitops-landing-zone",
-      "nameWithOwner": "FreeFades2Black/defense-gitops-landing-zone",
-      "description": "Hardened CIS Benchmark Kubernetes/ECS Infrastructure & OPA Zero-Trust Enforcement",
-      "status": "monitored",
-      "updatedAt": "2026-09-14T14:07:24Z"
-    },
-    {
-      "name": "cloud-asset-lifecycle-operator",
-      "nameWithOwner": "FreeFades2Black/cloud-asset-lifecycle-operator",
-      "description": "Automated Certificate & Cloud Asset Lifecycle Operator — Continuous TLS Expiration Auditing",
-      "status": "monitored",
-      "updatedAt": "2026-10-01T12:32:35Z"
-    }
-  ],
-  "dispatched_prs": [
-    {
-      "number": 1,
-      "title": "chore(ci): automated actions & dependency updates (1790786204)",
-      "state": "MERGED",
-      "url": "https://github.com/FreeFades2Black/base-docker-web/pull/1",
-      "repository": {
-        "name": "base-docker-web",
-        "nameWithOwner": "FreeFades2Black/base-docker-web"
-      }
-    },
-    {
-      "number": 1,
-      "title": "chore(ci): automated actions & dependency updates (1790786194)",
-      "state": "MERGED",
-      "url": "https://github.com/FreeFades2Black/azure-iac-generator/pull/1",
-      "repository": {
-        "name": "azure-iac-generator",
-        "nameWithOwner": "FreeFades2Black/azure-iac-generator"
-      }
-    },
-    {
-      "number": 129,
-      "title": "chore(ci): automated actions & dependency updates (1790786103)",
-      "state": "MERGED",
-      "url": "https://github.com/For-Your-Service/For-Your-Service/pull/129",
-      "repository": {
-        "name": "For-Your-Service",
-        "nameWithOwner": "For-Your-Service/For-Your-Service"
-      }
-    },
-    {
-      "number": 1,
-      "title": "chore(ci): automated actions & dependency updates (1790786085)",
-      "state": "MERGED",
-      "url": "https://github.com/For-Your-Service/demo-repository/pull/1",
-      "repository": {
-        "name": "demo-repository",
-        "nameWithOwner": "For-Your-Service/demo-repository"
-      }
-    }
-  ]
+﻿{
+    "academic_count":  8,
+    "engine_status":  {
+                          "academic_citations_indexed":  8,
+                          "cisa_cves_indexed":  1731,
+                          "sqlite_wal_mode":  true,
+                          "scraper_version":  "2.1.0 (sqlite-backed)",
+                          "scraper_daemon":  "healthy"
+                      },
+    "managed_repos":  [
+                          {
+                              "description":  "",
+                              "name":  "omarchy-ci-orchestrator",
+                              "nameWithOwner":  "FreeFades2Black/omarchy-ci-orchestrator",
+                              "updatedAt":  "2026-10-01T20:43:04Z"
+                          },
+                          {
+                              "description":  "",
+                              "name":  "repo-watchdog-agent",
+                              "nameWithOwner":  "FreeFades2Black/repo-watchdog-agent",
+                              "updatedAt":  "2026-10-01T12:35:25Z"
+                          },
+                          {
+                              "description":  "⚡ Automated Certificate \u0026 Cloud Asset Lifecycle Operator — Continuous TLS Expiration Auditing, Orphaned Resource FinOps Detection \u0026 IAM Secret Hygiene",
+                              "name":  "cloud-asset-lifecycle-operator",
+                              "nameWithOwner":  "FreeFades2Black/cloud-asset-lifecycle-operator",
+                              "updatedAt":  "2026-10-01T12:32:35Z"
+                          },
+                          {
+                              "description":  "Cyberpunk GitHub Profile README",
+                              "name":  "FreeFades2Black",
+                              "nameWithOwner":  "FreeFades2Black/FreeFades2Black",
+                              "updatedAt":  "2026-10-01T12:18:40Z"
+                          },
+                          {
+                              "description":  "",
+                              "name":  "base-docker-web",
+                              "nameWithOwner":  "FreeFades2Black/base-docker-web",
+                              "updatedAt":  "2026-09-30T16:57:25Z"
+                          },
+                          {
+                              "description":  "Resilient Azure IaC and Configuration Generator for multi-tier Terraform and Ansible",
+                              "name":  "azure-iac-generator",
+                              "nameWithOwner":  "FreeFades2Black/azure-iac-generator",
+                              "updatedAt":  "2026-09-30T16:54:55Z"
+                          },
+                          {
+                              "description":  "⚡ CIRCOR International IFS Cloud 24R2 \u0026 CIRCOR Operating System (COS) Lean Analytics Bridge — ETO/CTO Defense Flow Control, Mil-Spec Hydrostatic QA \u0026 PySpark Closed-Loop Order Containment",
+                              "name":  "circor-defense-ifs-cos-pipeline",
+                              "nameWithOwner":  "FreeFades2Black/circor-defense-ifs-cos-pipeline",
+                              "updatedAt":  "2026-09-27T17:51:05Z"
+                          },
+                          {
+                              "description":  "VisionBody Pro by Michelle - 30-Minute Bodyweight EMS Training \u0026 Member Management Suite",
+                              "name":  "visionbody-pro-by-michelle",
+                              "nameWithOwner":  "FreeFades2Black/visionbody-pro-by-michelle",
+                              "updatedAt":  "2026-09-22T12:45:06Z"
+                          },
+                          {
+                              "description":  "Audited Retrieval \u0026 Secure Action Agent: Production-Ready Responsible AI (RAI) in Microsoft Azure AI Foundry with Defense-in-Depth RAG, Strict Guardrails, and Adversarial CI/CD Eval Gates",
+                              "name":  "foundry-responsible-agent-sentinel",
+                              "nameWithOwner":  "FreeFades2Black/foundry-responsible-agent-sentinel",
+                              "updatedAt":  "2026-09-18T14:04:26Z"
+                          },
+                          {
+                              "description":  "",
+                              "name":  "platform-flight-simulator",
+                              "nameWithOwner":  "FreeFades2Black/platform-flight-simulator",
+                              "updatedAt":  "2026-09-14T15:43:50Z"
+                          },
+                          {
+                              "description":  "🛡️ Defense-Grade GitOps Landing Zone \u0026 DevSecOps Pipeline — Hardened CIS Benchmark Kubernetes/ECS Infrastructure, OPA Zero-Trust Enforcement \u0026 4-Chamber CI/CD Automation",
+                              "name":  "defense-gitops-landing-zone",
+                              "nameWithOwner":  "FreeFades2Black/defense-gitops-landing-zone",
+                              "updatedAt":  "2026-09-14T14:07:24Z"
+                          },
+                          {
+                              "description":  "",
+                              "name":  "enterprise-platform-portal",
+                              "nameWithOwner":  "FreeFades2Black/enterprise-platform-portal",
+                              "updatedAt":  "2026-09-13T19:05:24Z"
+                          },
+                          {
+                              "description":  "",
+                              "name":  "fleet-lakehouse-operator",
+                              "nameWithOwner":  "FreeFades2Black/fleet-lakehouse-operator",
+                              "updatedAt":  "2026-09-13T01:02:05Z"
+                          },
+                          {
+                              "description":  "",
+                              "name":  "platform-resilience-fieldguide",
+                              "nameWithOwner":  "FreeFades2Black/platform-resilience-fieldguide",
+                              "updatedAt":  "2026-09-13T01:01:33Z"
+                          },
+                          {
+                              "description":  "Mosaic Health Cloud Architecture \u0026 M\u0026A Governance Portal (Azure Landing Zone, HITRUST CSF, Multi-Cloud Matrix, ADRs)",
+                              "name":  "mosaic-health-cloud-architecture",
+                              "nameWithOwner":  "FreeFades2Black/mosaic-health-cloud-architecture",
+                              "updatedAt":  "2026-09-13T00:30:33Z"
+                          },
+                          {
+                              "description":  "BMW Plant Spartanburg Multi-Powertrain Assembly Lakehouse: Shared ICE/PHEV/BEV Sequencing, AIQX Defect Quarantine, and TimesFM-3 Takt Forecaster",
+                              "name":  "bmw-spartanburg-assembly-lakehouse",
+                              "nameWithOwner":  "FreeFades2Black/bmw-spartanburg-assembly-lakehouse",
+                              "updatedAt":  "2026-09-13T00:29:45Z"
+                          },
+                          {
+                              "description":  "⚡ Multi-Cloud Edge Telemetry \u0026 Analytical Lakehouse — Ingesting High-Throughput Industrial IoT Streams with Automated Quality Gates \u0026 ISO 10816 Anomaly Detection for BMW, Michelin \u0026 GE Vernova",
+                              "name":  "edge-telemetry-lakehouse",
+                              "nameWithOwner":  "FreeFades2Black/edge-telemetry-lakehouse",
+                              "updatedAt":  "2026-09-13T00:28:46Z"
+                          },
+                          {
+                              "description":  "",
+                              "name":  "thats-right",
+                              "nameWithOwner":  "FreeFades2Black/thats-right",
+                              "updatedAt":  "2026-09-22T23:35:25Z"
+                          },
+                          {
+                              "description":  "",
+                              "name":  "ado-to-gh-migration",
+                              "nameWithOwner":  "FreeFades2Black/ado-to-gh-migration",
+                              "updatedAt":  "2026-09-13T00:19:29Z"
+                          },
+                          {
+                              "description":  "⚡ Universal Resume Extraction and Injection Pipeline - Normalize arbitrary PDF/DOCX resumes into standard JSON for automated ATS autofill across Greenhouse, Lever, and Workday.",
+                              "name":  "universal-resume-pipeline",
+                              "nameWithOwner":  "FreeFades2Black/universal-resume-pipeline",
+                              "updatedAt":  "2026-09-13T00:18:57Z"
+                          },
+                          {
+                              "description":  "",
+                              "name":  "enterprise-multicloud-gitops-zerotrust",
+                              "nameWithOwner":  "FreeFades2Black/enterprise-multicloud-gitops-zerotrust",
+                              "updatedAt":  "2026-09-13T00:18:43Z"
+                          },
+                          {
+                              "description":  "Mosaic Healthcare Multi-Cloud Production Configuration (AWS + Azure + Databricks Unity Catalog)",
+                              "name":  "mosaic-healthcare-multicloud-platform",
+                              "nameWithOwner":  "FreeFades2Black/mosaic-healthcare-multicloud-platform",
+                              "updatedAt":  "2026-09-13T00:18:14Z"
+                          },
+                          {
+                              "description":  "",
+                              "name":  "windows_cert_manager",
+                              "nameWithOwner":  "FreeFades2Black/windows_cert_manager",
+                              "updatedAt":  "2026-09-13T00:17:30Z"
+                          },
+                          {
+                              "description":  "uap-scraper-pipeline gcs databricks",
+                              "name":  "uap-scraper-pipeline",
+                              "nameWithOwner":  "FreeFades2Black/uap-scraper-pipeline",
+                              "updatedAt":  "2026-09-13T00:17:26Z"
+                          },
+                          {
+                              "description":  "Prisma Health Upstate Regional Care Coordination \u0026 Bed-Surge Lakehouse on Databricks Delta Lake powered by Google TimesFM-3 and CMS CCN keys",
+                              "name":  "prisma-upstate-care-lakehouse",
+                              "nameWithOwner":  "FreeFades2Black/prisma-upstate-care-lakehouse",
+                              "updatedAt":  "2026-09-13T00:17:20Z"
+                          },
+                          {
+                              "description":  "",
+                              "name":  "mosaic-azure-ai-model-factory",
+                              "nameWithOwner":  "FreeFades2Black/mosaic-azure-ai-model-factory",
+                              "updatedAt":  "2026-09-13T00:17:16Z"
+                          },
+                          {
+                              "description":  "🤠 Standalone CustomTkinter P\u0026L Interaction \u0026 Real-Time Financial Sensitivity Forecasting Engine",
+                              "name":  "gunslingers-desktop-ledger",
+                              "nameWithOwner":  "FreeFades2Black/gunslingers-desktop-ledger",
+                              "updatedAt":  "2026-09-13T00:17:13Z"
+                          },
+                          {
+                              "description":  "🏛️ Greenville, SC Infrastructure \u0026 Growth Analytics Lakehouse | Medallion PySpark, Google TimesFM-3 52-Week Foundation Forecasting, Geospatial Bottleneck Diagnostics \u0026 Counterfactual Policy Simulator",
+                              "name":  "greenville-infrastructure-lakehouse",
+                              "nameWithOwner":  "FreeFades2Black/greenville-infrastructure-lakehouse",
+                              "updatedAt":  "2026-09-13T00:17:11Z"
+                          },
+                          {
+                              "description":  "",
+                              "name":  "ghost-job-intel-geospatial-pipeline",
+                              "nameWithOwner":  "FreeFades2Black/ghost-job-intel-geospatial-pipeline",
+                              "updatedAt":  "2026-09-13T00:17:09Z"
+                          },
+                          {
+                              "description":  "",
+                              "name":  "freefades2black-card",
+                              "nameWithOwner":  "FreeFades2Black/freefades2black-card",
+                              "updatedAt":  "2026-09-13T00:17:06Z"
+                          },
+                          {
+                              "description":  "Comprehensive GitHub repository security audit, configuration templates, and best practices enforcement",
+                              "name":  "github-security-audit",
+                              "nameWithOwner":  "FreeFades2Black/github-security-audit",
+                              "updatedAt":  "2026-09-06T06:12:07Z"
+                          },
+                          {
+                              "description":  "",
+                              "name":  "serverless-cloud-autoremediation-engine",
+                              "nameWithOwner":  "FreeFades2Black/serverless-cloud-autoremediation-engine",
+                              "updatedAt":  "2026-08-31T12:13:57Z"
+                          },
+                          {
+                              "description":  "⚡ Complete step-by-step guide and agentic automation toolchain for Omarchy Linux, Cyberpunk Hyprland theming, and recursive Antigravity deployment.",
+                              "name":  "omarchy-antigravity-bootstrap",
+                              "nameWithOwner":  "FreeFades2Black/omarchy-antigravity-bootstrap",
+                              "updatedAt":  "2026-08-31T12:17:48Z"
+                          },
+                          {
+                              "description":  "",
+                              "name":  "omarchy-gitops-forge",
+                              "nameWithOwner":  "FreeFades2Black/omarchy-gitops-forge",
+                              "updatedAt":  "2026-08-31T12:13:49Z"
+                          },
+                          {
+                              "description":  "📦 Distributed Multi-Warehouse Order Routing \u0026 Fulfillment Engine",
+                              "name":  "omarchy-order-fulfillment",
+                              "nameWithOwner":  "FreeFades2Black/omarchy-order-fulfillment",
+                              "updatedAt":  "2026-08-29T17:21:03Z"
+                          },
+                          {
+                              "description":  "📈 Real-Time Streaming Analytics \u0026 Telemetry Aggregation Engine",
+                              "name":  "omarchy-analytics-engine",
+                              "nameWithOwner":  "FreeFades2Black/omarchy-analytics-engine",
+                              "updatedAt":  "2026-08-29T17:20:56Z"
+                          },
+                          {
+                              "description":  "💳 High-Throughput Encrypted Payment \u0026 Transaction Gateway",
+                              "name":  "omarchy-payment-vault",
+                              "nameWithOwner":  "FreeFades2Black/omarchy-payment-vault",
+                              "updatedAt":  "2026-08-29T17:20:24Z"
+                          },
+                          {
+                              "description":  "🔐 Enterprise OAuth2 \u0026 JWT Zero-Trust Authentication Microservice",
+                              "name":  "omarchy-auth-service",
+                              "nameWithOwner":  "FreeFades2Black/omarchy-auth-service",
+                              "updatedAt":  "2026-08-29T17:20:54Z"
+                          },
+                          {
+                              "description":  "Apache Spark with Python",
+                              "name":  "PySpark",
+                              "nameWithOwner":  "FreeFades2Black/PySpark",
+                              "updatedAt":  "2026-07-14T22:34:24Z"
+                          },
+                          {
+                              "description":  "databricks-06-29-2026",
+                              "name":  "databricks-06-29-2026",
+                              "nameWithOwner":  "FreeFades2Black/databricks-06-29-2026",
+                              "updatedAt":  "2026-07-13T16:29:55Z"
+                          },
+                          {
+                              "description":  "DatabrickMe",
+                              "name":  "DatabrickMe",
+                              "nameWithOwner":  "FreeFades2Black/DatabrickMe",
+                              "updatedAt":  "2026-06-03T18:08:52Z"
+                          },
+                          {
+                              "description":  "THE IRON HORSE PIPELINE",
+                              "name":  "THE-IRON-HORSE-PIPELINE",
+                              "nameWithOwner":  "FreeFades2Black/THE-IRON-HORSE-PIPELINE",
+                              "updatedAt":  "2026-06-02T14:10:04Z"
+                          },
+                          {
+                              "description":  "",
+                              "name":  "cloudwire",
+                              "nameWithOwner":  "FreeFades2Black/cloudwire",
+                              "updatedAt":  "2026-05-24T16:24:09Z"
+                          },
+                          {
+                              "description":  "",
+                              "name":  "dashboard-analytics",
+                              "nameWithOwner":  "FreeFades2Black/dashboard-analytics",
+                              "updatedAt":  "2026-05-19T16:08:16Z"
+                          },
+                          {
+                              "description":  "",
+                              "name":  "devops-mission-control",
+                              "nameWithOwner":  "FreeFades2Black/devops-mission-control",
+                              "updatedAt":  "2026-03-18T22:28:10Z"
+                          },
+                          {
+                              "description":  "AI-Powered Military-to-Civilian Career Transition Intelligence Platform powered by Apache Spark, Delta Lake, and Databricks",
+                              "name":  "For-Your-Service",
+                              "nameWithOwner":  "For-Your-Service/For-Your-Service",
+                              "updatedAt":  "2026-09-30T16:39:06Z"
+                          },
+                          {
+                              "description":  "A code repository designed to show the best GitHub has to offer.",
+                              "name":  "demo-repository",
+                              "nameWithOwner":  "For-Your-Service/demo-repository",
+                              "updatedAt":  "2026-09-30T16:39:02Z"
+                          },
+                          {
+                              "description":  "Organization profile and landing page for For Your Service",
+                              "name":  ".github",
+                              "nameWithOwner":  "For-Your-Service/.github",
+                              "updatedAt":  "2026-08-06T12:58:38Z"
+                          }
+                      ],
+    "cisa_count":  1731,
+    "last_updated":  "2026-10-01T20:47:23Z",
+    "dispatched_prs":  {
+                           "value":  [
+                                         {
+                                             "number":  1,
+                                             "repository":  {
+                                                                "name":  "base-docker-web",
+                                                                "nameWithOwner":  "FreeFades2Black/base-docker-web"
+                                                            },
+                                             "state":  "merged",
+                                             "title":  "chore(ci): automated actions \u0026 dependency updates (1790786204)",
+                                             "url":  "https://github.com/FreeFades2Black/base-docker-web/pull/1"
+                                         },
+                                         {
+                                             "number":  1,
+                                             "repository":  {
+                                                                "name":  "azure-iac-generator",
+                                                                "nameWithOwner":  "FreeFades2Black/azure-iac-generator"
+                                                            },
+                                             "state":  "merged",
+                                             "title":  "chore(ci): automated actions \u0026 dependency updates (1790786194)",
+                                             "url":  "https://github.com/FreeFades2Black/azure-iac-generator/pull/1"
+                                         },
+                                         {
+                                             "number":  129,
+                                             "repository":  {
+                                                                "name":  "For-Your-Service",
+                                                                "nameWithOwner":  "For-Your-Service/For-Your-Service"
+                                                            },
+                                             "state":  "merged",
+                                             "title":  "chore(ci): automated actions \u0026 dependency updates (1790786103)",
+                                             "url":  "https://github.com/For-Your-Service/For-Your-Service/pull/129"
+                                         },
+                                         {
+                                             "number":  1,
+                                             "repository":  {
+                                                                "name":  "demo-repository",
+                                                                "nameWithOwner":  "For-Your-Service/demo-repository"
+                                                            },
+                                             "state":  "merged",
+                                             "title":  "chore(ci): automated actions \u0026 dependency updates (1790786085)",
+                                             "url":  "https://github.com/For-Your-Service/demo-repository/pull/1"
+                                         }
+                                     ],
+                           "Count":  4
+                       }
 }

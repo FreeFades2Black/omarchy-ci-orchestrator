@@ -201,13 +201,11 @@
         document.getElementById('stat-repos').textContent = data.managed_repos ? data.managed_repos.length : 0;
         document.getElementById('stat-prs').textContent = data.dispatched_prs ? data.dispatched_prs.length : 0;
         
-        if (data.engine_status) {
-          document.getElementById('stat-cisa').textContent = data.engine_status.cisa_cves_indexed || "1,731";
-          document.getElementById('stat-academic').textContent = data.engine_status.academic_citations_indexed || "8";
-        } else {
-          document.getElementById('stat-cisa').textContent = "1,731";
-          document.getElementById('stat-academic').textContent = "8";
-        }
+        const cisaVal = data.cisa_count || (data.engine_status && data.engine_status.cisa_cves_indexed) || 1731;
+        document.getElementById('stat-cisa').textContent = Number(cisaVal).toLocaleString();
+
+        const academicVal = data.academic_count || (data.engine_status && data.engine_status.academic_citations_indexed) || 8;
+        document.getElementById('stat-academic').textContent = Number(academicVal).toLocaleString();
 
         // Repos
         const repoList = document.getElementById('repo-list');

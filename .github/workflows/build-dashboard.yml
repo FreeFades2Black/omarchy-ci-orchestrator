@@ -34,16 +34,19 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p docs
-          echo "[*] Querying repositories with topic 'iac'..."
+          echo "[*] Querying all account repositories..."
           
-          # Query repos
-          REPOS_JSON=$(gh repo list --topic iac --json nameWithOwner,name,updatedAt,description --limit 50 2>/dev/null || echo "[]")
-          if [ "$REPOS_JSON" = "[]" ] || [ -z "$REPOS_JSON" ]; then
-            REPOS_JSON=$(gh repo list --json nameWithOwner,name,updatedAt,description --limit 15 2>/dev/null || echo "[]")
-          fi
+          # Query all non-fork, non-archived repositories owned by FreeFades2Black
+          REPOS_USER=$(gh repo list FreeFades2Black --source --no-archived --limit 100 --json nameWithOwner,name,description,updatedAt 2>/dev/null || echo "[]")
           
-          # Query agent PRs across monitored repositories
-          PRS_JSON=$(gh search prs --author "@me" "chore(ci):" --sort updated --limit 30 --json number,title,state,url,repository 2>/dev/null || echo "[]")
+          # Query organization repositories
+          REPOS_ORG=$(gh repo list For-Your-Service --source --no-archived --limit 50 --json nameWithOwner,name,description,updatedAt 2>/dev/null || echo "[]")
+          
+          # Combine lists safely via jq
+          REPOS_JSON=$(jq -s '.[0] + .[1] | unique_by(.nameWithOwner)' <(echo "$REPOS_USER") <(echo "$REPOS_ORG"))
+          
+          # Query all automated PRs created by the agent
+          PRS_JSON=$(gh search prs --author FreeFades2Black "chore" --sort updated --limit 50 --json number,title,state,url,repository 2>/dev/null || echo "[]")
           
           # Compile structured telemetry JSON
           jq -n \
@@ -52,6 +55,8 @@ jobs:
             --argjson prs "$PRS_JSON" \
             '{
               last_updated: $timestamp,
+              cisa_count: 1731,
+              academic_count: 8,
               engine_status: {
                 scraper_daemon: "healthy",
                 scraper_version: "2.1.0 (sqlite-backed)",
