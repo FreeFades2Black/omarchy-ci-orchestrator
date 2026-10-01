@@ -1,5 +1,29 @@
 {
-  "last_updated": "2026-10-01T21:12:50Z",
+  "last_updated": "2026-10-01T21:16:54Z",
+  "host_telemetry": {
+    "heartbeat_utc": "2026-10-01T21:14:54Z",
+    "host": "omarchy (Arch Linux)",
+    "repo_agent": {
+      "status": "active",
+      "pid": 1882022,
+      "cpu": "0.0%",
+      "memory": "62.8 MB",
+      "uptime": "23:47"
+    },
+    "scraper_agent": {
+      "status": "active",
+      "pid": 1879097,
+      "cpu": "0.1%",
+      "memory": "95.3 MB",
+      "uptime": "48:21"
+    },
+    "sqlite_intel": {
+      "cisa_cves": 1731,
+      "academic_papers": 8,
+      "cached_action_tags": 22,
+      "last_synced": "2026-10-01T20:26:12.547216+00:00"
+    }
+  },
   "daemons": [
     {
       "name": "repo-agent",
@@ -7,6 +31,9 @@
       "host": "omarchy (Arch Linux)",
       "role": "Fleet Inspector, PR Dispatcher, Auto-Merger",
       "status": "ACTIVE",
+      "cpu": "0.0%",
+      "memory": "62.8 MB",
+      "uptime": "23:47",
       "persistence": "systemd --user (lingering enabled)"
     },
     {
@@ -16,6 +43,9 @@
       "endpoint": "http://127.0.0.1:8484",
       "role": "CISA KEV, arXiv, OpenAlex, Dynamic Releases",
       "status": "ACTIVE",
+      "cpu": "0.1%",
+      "memory": "95.3 MB",
+      "uptime": "48:21",
       "database": "intel_cache.db (SQLite WAL)"
     },
     {
@@ -31,7 +61,7 @@
   "cisa_count": 1731,
   "academic_count": 8,
   "engine_status": {
-    "scraper_daemon": "healthy",
+    "scraper_daemon": "active",
     "scraper_version": "2.1.0 (sqlite-backed)",
     "cisa_cves_indexed": 1731,
     "academic_citations_indexed": 8,
@@ -281,7 +311,7 @@
       "isPrivate": false,
       "name": "omarchy-ci-orchestrator",
       "nameWithOwner": "FreeFades2Black/omarchy-ci-orchestrator",
-      "updatedAt": "2026-10-01T21:06:05Z"
+      "updatedAt": "2026-10-01T21:13:06Z"
     },
     {
       "description": "",

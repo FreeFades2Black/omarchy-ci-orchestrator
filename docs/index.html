@@ -204,8 +204,141 @@
     </div>
 
     <div class="grid">
+      <!-- Interactive Architecture Topology Diagram -->
+      <div class="card" style="grid-column: 1 / -1; margin-bottom: 0.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <h3 style="margin: 0; color: #f0f6fc;">🏛️ Multi-Agent Architecture Topology</h3>
+          <span id="topology-heartbeat" style="font-size: 0.8rem; color: #3fb950; font-family: monospace;">● Live Heartbeat</span>
+        </div>
+        
+        <div style="background: #090d13; border: 1px solid #30363d; border-radius: 8px; padding: 1.5rem; overflow-x: auto;">
+          <svg viewBox="0 0 960 220" style="width: 100%; min-width: 760px; height: auto; font-family: -apple-system, BlinkMacSystemFont, sans-serif;">
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#58a6ff" />
+              </marker>
+              <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#3fb950" />
+              </marker>
+            </defs>
+
+            <!-- External Feeds Node -->
+            <rect x="20" y="30" width="180" height="150" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+            <text x="35" y="60" fill="#58a6ff" font-weight="bold" font-size="14">External Intelligence</text>
+            <text x="35" y="85" fill="#8b949e" font-size="12">• CISA KEV (1,731)</text>
+            <text x="35" y="105" fill="#8b949e" font-size="12">• arXiv cs.SE / OpenAlex</text>
+            <text x="35" y="125" fill="#8b949e" font-size="12">• NIST SP 800-218</text>
+            <text x="35" y="145" fill="#8b949e" font-size="12">• GitHub Release Tags</text>
+
+            <!-- Arrow: External to Scraper -->
+            <line x1="200" y1="105" x2="260" y2="105" stroke="#58a6ff" stroke-width="2" marker-end="url(#arrow)"/>
+
+            <!-- Scraper Daemon Node -->
+            <rect x="270" y="30" width="190" height="150" rx="8" fill="#161b22" stroke="#238636" stroke-width="2"/>
+            <text x="285" y="60" fill="#3fb950" font-weight="bold" font-size="14">scraper-agent</text>
+            <text x="285" y="80" fill="#8b949e" font-size="11">FastAPI :8484 / aiohttp</text>
+            <text x="285" y="105" fill="#c9d1d9" font-size="12">Persistent Cache:</text>
+            <text x="285" y="125" fill="#f0883e" font-family="monospace" font-size="12">intel_cache.db (WAL)</text>
+            <text x="285" y="150" id="scraper-diag-metrics" fill="#8b949e" font-size="11">Mem: -- | CPU: --</text>
+
+            <!-- Arrow: Scraper to Repo Agent (IPC) -->
+            <line x1="460" y1="105" x2="520" y2="105" stroke="#58a6ff" stroke-width="2" marker-end="url(#arrow)"/>
+            <text x="470" y="95" fill="#8b949e" font-size="10">Local IPC</text>
+
+            <!-- Repo Agent Node -->
+            <rect x="530" y="30" width="190" height="150" rx="8" fill="#161b22" stroke="#1f6feb" stroke-width="2"/>
+            <text x="545" y="60" fill="#58a6ff" font-weight="bold" font-size="14">repo-agent</text>
+            <text x="545" y="80" fill="#8b949e" font-size="11">GitOps & Remediation</text>
+            <text x="545" y="105" fill="#c9d1d9" font-size="12">• Inspects Fleet Repos</text>
+            <text x="545" y="125" fill="#c9d1d9" font-size="12">• README Maintenance</text>
+            <text x="545" y="150" id="repo-diag-metrics" fill="#8b949e" font-size="11">Mem: -- | CPU: --</text>
+
+            <!-- Arrow: Repo Agent to Fleet GitHub -->
+            <line x1="720" y1="105" x2="780" y2="105" stroke="#3fb950" stroke-width="2" marker-end="url(#arrow-green)"/>
+            <text x="730" y="95" fill="#3fb950" font-size="10">Auto PRs</text>
+
+            <!-- GitHub Fleet & Watchdog Node -->
+            <rect x="790" y="30" width="150" height="150" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+            <text x="805" y="60" fill="#f0f6fc" font-weight="bold" font-size="14">GitHub Fleet</text>
+            <text x="805" y="85" fill="#8b949e" font-size="12">44 Repositories</text>
+            <text x="805" y="105" fill="#8b949e" font-size="12">SQUASH Merge</text>
+            <line x1="800" y1="118" x2="930" y2="118" stroke="#30363d" stroke-width="1"/>
+            <text x="805" y="138" fill="#d29922" font-weight="bold" font-size="12">Windows Toast</text>
+            <text x="805" y="155" fill="#8b949e" font-size="10">SSH Poll (15s)</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Daemon Resource Utilization Cards -->
+      <div class="card" style="grid-column: 1 / -1; margin-bottom: 0.5rem;">
+        <h3 style="margin-top: 0; color: #f0f6fc;">⚙️ Live Daemon Resource Footprint (Omarchy Host)</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: 0.75rem;">
+          
+          <!-- repo-agent resource card -->
+          <div style="background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <strong style="color: #58a6ff;">repo-agent.service</strong>
+              <span id="repo-status-badge" class="badge badge-merged">ACTIVE</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
+              <span style="color: #8b949e;">Memory:</span>
+              <span id="repo-mem" style="color: #f0f6fc; font-family: monospace;">--</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
+              <span style="color: #8b949e;">CPU Usage:</span>
+              <span id="repo-cpu" style="color: #f0f6fc; font-family: monospace;">--</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.82rem;">
+              <span style="color: #8b949e;">Uptime:</span>
+              <span id="repo-uptime" style="color: #f0f6fc; font-family: monospace;">--</span>
+            </div>
+          </div>
+
+          <!-- scraper-agent resource card -->
+          <div style="background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <strong style="color: #3fb950;">scraper-agent.service</strong>
+              <span id="scraper-status-badge" class="badge badge-merged">ACTIVE</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
+              <span style="color: #8b949e;">Memory:</span>
+              <span id="scraper-mem" style="color: #f0f6fc; font-family: monospace;">--</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
+              <span style="color: #8b949e;">CPU Usage:</span>
+              <span id="scraper-cpu" style="color: #f0f6fc; font-family: monospace;">--</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.82rem;">
+              <span style="color: #8b949e;">Uptime:</span>
+              <span id="scraper-uptime" style="color: #f0f6fc; font-family: monospace;">--</span>
+            </div>
+          </div>
+
+          <!-- sqlite database card -->
+          <div style="background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <strong style="color: #f0883e;">intel_cache.db</strong>
+              <span class="badge" style="background: #d29922; color: #000;">WAL MODE</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
+              <span style="color: #8b949e;">CISA KEV Signatures:</span>
+              <span id="db-cisa" style="color: #f0f6fc; font-family: monospace;">1,731</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
+              <span style="color: #8b949e;">Academic Preprints:</span>
+              <span id="db-papers" style="color: #f0f6fc; font-family: monospace;">8</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.82rem;">
+              <span style="color: #8b949e;">Cached Action Tags:</span>
+              <span id="db-tags" style="color: #f0f6fc; font-family: monospace;">--</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
       <!-- Agent Daemon Infrastructure Status Block -->
-      <div class="card" style="grid-column: 1 / -1; margin-bottom: 1rem;">
+      <div class="card" style="grid-column: 1 / -1; margin-bottom: 0.5rem;">
         <h3 style="margin-top: 0; color: #f0f6fc;">🤖 Autonomous Agent Daemons & Infrastructure</h3>
         <div id="daemons-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 0.75rem;">
           <!-- Rendered dynamically via JS -->
@@ -408,6 +541,39 @@
 
         const academicVal = data.academic_count || (data.engine_status && data.engine_status.academic_citations_indexed) || 8;
         document.getElementById('stat-academic').textContent = Number(academicVal).toLocaleString();
+
+        // Bind host telemetry to resource cards & SVG diagram
+        if (data.host_telemetry) {
+          const host = data.host_telemetry;
+          const repo = host.repo_agent || {};
+          const scraper = host.scraper_agent || {};
+          const db = host.sqlite_intel || {};
+
+          // Host heartbeat
+          if (host.heartbeat_utc && document.getElementById('topology-heartbeat')) {
+            const hbDate = new Date(host.heartbeat_utc);
+            document.getElementById('topology-heartbeat').textContent = `● Heartbeat: ${hbDate.toLocaleTimeString()}`;
+          }
+
+          // Update repo-agent metrics
+          if (document.getElementById('repo-mem')) document.getElementById('repo-mem').textContent = repo.memory || 'N/A';
+          if (document.getElementById('repo-cpu')) document.getElementById('repo-cpu').textContent = repo.cpu || '0.0%';
+          if (document.getElementById('repo-uptime')) document.getElementById('repo-uptime').textContent = repo.uptime || 'online';
+          if (document.getElementById('repo-status-badge')) document.getElementById('repo-status-badge').textContent = (repo.status || 'ACTIVE').toUpperCase();
+          if (document.getElementById('repo-diag-metrics')) document.getElementById('repo-diag-metrics').textContent = `Mem: ${repo.memory || '--'} | CPU: ${repo.cpu || '--'}`;
+
+          // Update scraper-agent metrics
+          if (document.getElementById('scraper-mem')) document.getElementById('scraper-mem').textContent = scraper.memory || 'N/A';
+          if (document.getElementById('scraper-cpu')) document.getElementById('scraper-cpu').textContent = scraper.cpu || '0.0%';
+          if (document.getElementById('scraper-uptime')) document.getElementById('scraper-uptime').textContent = scraper.uptime || 'online';
+          if (document.getElementById('scraper-status-badge')) document.getElementById('scraper-status-badge').textContent = (scraper.status || 'ACTIVE').toUpperCase();
+          if (document.getElementById('scraper-diag-metrics')) document.getElementById('scraper-diag-metrics').textContent = `Mem: ${scraper.memory || '--'} | CPU: ${scraper.cpu || '--'}`;
+
+          // Update database stats
+          if (db.cisa_cves && document.getElementById('db-cisa')) document.getElementById('db-cisa').textContent = Number(db.cisa_cves).toLocaleString();
+          if (db.academic_papers && document.getElementById('db-papers')) document.getElementById('db-papers').textContent = Number(db.academic_papers).toLocaleString();
+          if (db.cached_action_tags && document.getElementById('db-tags')) document.getElementById('db-tags').textContent = Number(db.cached_action_tags).toLocaleString();
+        }
 
         // Daemons topology
         if (data.daemons && document.getElementById('daemons-grid')) {
