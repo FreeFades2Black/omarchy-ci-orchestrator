@@ -122,6 +122,7 @@
     .badge-merged { background: var(--green-bg); color: #3fb950; border: 1px solid rgba(46,160,67,0.4); }
     .badge-open { background: var(--blue-bg); color: #58a6ff; border: 1px solid rgba(56,139,253,0.4); }
     .badge-uptodate { background: var(--purple-bg); color: #bc8cff; border: 1px solid rgba(171,125,248,0.4); }
+    .badge-closed { background: #21262d; color: #8b949e; border: 1px solid #30363d; }
     .repo-meta { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem; }
     .table-container {
       overflow-x: auto;
@@ -219,24 +220,39 @@
         <ul id="pr-list"><li>Loading automated pull requests...</li></ul>
       </div>
 
-      <div class="card" style="grid-column: 1 / -1;">
-        <div class="card-header">
-          <h2>⏱️ Automated Fleet Remediation Timeline</h2>
-          <span class="badge badge-merged" id="timeline-count-badge">0 Runs</span>
+      <!-- Enhanced Observability Table & Trigger Panel -->
+      <div class="card" style="grid-column: 1 / -1; margin-top: 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
+          <div>
+            <h3 style="margin: 0; color: #f0f6fc;">🚀 Automated Remediation & Audit Timeline</h3>
+            <span style="font-size: 0.8rem; color: #8b949e;">Live event logs, merge durations, and intelligence links</span>
+          </div>
+          
+          <div style="display: flex; gap: 0.75rem; align-items: center;">
+            <span id="pr-counter" class="badge badge-open">0 Dispatched</span>
+            <button id="dispatch-btn" onclick="triggerAudit()" style="background: #238636; color: #fff; border: 1px solid #2ea043; border-radius: 6px; padding: 0.4rem 0.8rem; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: background 0.2s;">
+              ↻ Trigger Scan Now
+            </button>
+          </div>
         </div>
-        <div class="table-container">
-          <table class="timeline-table">
+
+        <!-- Optional PAT input modal/prompt for authenticated dispatch -->
+        <div id="dispatch-status" style="display: none; padding: 0.5rem 0.75rem; margin-bottom: 1rem; border-radius: 6px; font-size: 0.85rem;"></div>
+
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.86rem;">
             <thead>
-              <tr>
-                <th>Repository</th>
-                <th>Remediation Patch</th>
-                <th>Status</th>
-                <th>Dispatched (Created)</th>
-                <th>Resolved / Merged</th>
+              <tr style="border-bottom: 2px solid #30363d; color: #8b949e;">
+                <th style="padding: 0.75rem 0.5rem;">Repository</th>
+                <th style="padding: 0.75rem 0.5rem;">Status</th>
+                <th style="padding: 0.75rem 0.5rem;">Upgrade Patch</th>
+                <th style="padding: 0.75rem 0.5rem;">Intelligence & Compliance</th>
+                <th style="padding: 0.75rem 0.5rem;">Dispatched</th>
+                <th style="padding: 0.75rem 0.5rem;">Resolution Time</th>
               </tr>
             </thead>
-            <tbody id="timeline-tbody">
-              <tr><td colspan="5" style="text-align:center; color:var(--text-muted); padding:2rem;">Loading remediation timeline...</td></tr>
+            <tbody id="remediation-rows">
+              <tr><td colspan="6" style="padding: 1rem; text-align: center; color: #8b949e;">Loading live run records...</td></tr>
             </tbody>
           </table>
         </div>
@@ -250,43 +266,129 @@
 
   <script>
     function formatTimestamp(isoStr) {
-      if (!isoStr || isoStr.startsWith("0001-01-01")) return null;
+      if (!isoStr || isoStr.startsWith('0001-01-01')) return '<span style="color: #484f58;">—</span>';
       const d = new Date(isoStr);
-      if (isNaN(d.getTime())) return null;
-      return new Intl.DateTimeFormat('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-        hour: 'numeric',
-        minute: '2-digit',
-        hour12: true
-      }).format(d);
+      if (isNaN(d.getTime())) return '<span style="color: #484f58;">—</span>';
+      return `<span title="${d.toISOString()}">${d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} ${d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}</span>`;
     }
 
-    function timeAgo(isoStr) {
-      if (!isoStr || isoStr.startsWith("0001-01-01")) return "";
-      const d = new Date(isoStr);
-      if (isNaN(d.getTime())) return "";
-      const diffSec = Math.floor((Date.now() - d.getTime()) / 1000);
-      if (diffSec < 60) return "just now";
-      const diffMin = Math.floor(diffSec / 60);
-      if (diffMin < 60) return `${diffMin}m ago`;
-      const diffHr = Math.floor(diffMin / 60);
-      if (diffHr < 24) return `${diffHr}h ago`;
-      const diffDay = Math.floor(diffHr / 24);
-      return `${diffDay}d ago`;
+    function calculateDuration(createdIso, resolvedIso) {
+      if (!createdIso || !resolvedIso || resolvedIso.startsWith('0001-01-01')) return '<span style="color: #8b949e;">In Progress</span>';
+      const dCreated = new Date(createdIso);
+      const dResolved = new Date(resolvedIso);
+      if (isNaN(dCreated.getTime()) || isNaN(dResolved.getTime())) return '<span style="color: #8b949e;">In Progress</span>';
+      const diffMs = dResolved - dCreated;
+      if (diffMs < 0) return '0s';
+      
+      const sec = Math.floor(diffMs / 1000);
+      if (sec < 60) return `<span style="color: #3fb950; font-weight: 600;">${sec}s</span>`;
+      const min = Math.floor(sec / 60);
+      const remainSec = sec % 60;
+      if (min < 60) return `<span style="color: #3fb950; font-weight: 600;">${min}m ${remainSec}s</span>`;
+      const hrs = Math.floor(min / 60);
+      return `<span style="color: #58a6ff; font-weight: 600;">${hrs}h ${min % 60}m</span>`;
     }
 
+    function extractIntelligenceBadges(bodyText) {
+      if (!bodyText) return '<span style="color: #484f58;">Standard Node20/Timeout</span>';
+      
+      let html = '';
+      // Match CISA CVEs (e.g., CVE-2024-XXXX)
+      const cves = bodyText.match(/CVE-\d{4}-\d+/g);
+      if (cves) {
+        [...new Set(cves)].slice(0, 2).forEach(cve => {
+          html += `<a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" style="text-decoration: none; display: inline-block; background: #da3633; color: #fff; padding: 0.15rem 0.35rem; border-radius: 4px; font-size: 0.72rem; margin-right: 0.3rem;">${cve}</a>`;
+        });
+      }
+
+      // Match arXiv Preprints
+      const arxiv = bodyText.match(/arXiv\s*(cs\.[A-Z]{2}|\d{4}\.\d+)?/i);
+      if (arxiv && (bodyText.includes('arXiv') || bodyText.includes('arxiv'))) {
+        html += `<span style="display: inline-block; background: #8957e5; color: #fff; padding: 0.15rem 0.35rem; border-radius: 4px; font-size: 0.72rem; margin-right: 0.3rem;">arXiv cs.SE</span>`;
+      }
+
+      // Match NIST Guidelines
+      if (bodyText.includes('NIST SP 800-218')) {
+        html += `<span style="display: inline-block; background: #1f6feb; color: #fff; padding: 0.15rem 0.35rem; border-radius: 4px; font-size: 0.72rem; margin-right: 0.3rem;">NIST SP 800-218</span>`;
+      }
+
+      // Match Academic Research citations
+      if (bodyText.includes('Global University Research') || bodyText.includes('RCSB PDB AI Help Desk') || bodyText.includes('OpenAlex')) {
+        html += `<span style="display: inline-block; background: #ab7df826; color: #bc8cff; border: 1px solid rgba(171,125,248,0.4); padding: 0.15rem 0.35rem; border-radius: 4px; font-size: 0.72rem; margin-right: 0.3rem;">Academic Citations</span>`;
+      }
+
+      // Match CISA & FinOps Hardening
+      if (bodyText.includes('CISA & FinOps') || bodyText.includes('timeout-minutes')) {
+        html += `<span style="display: inline-block; background: #23863626; color: #3fb950; border: 1px solid rgba(46,160,67,0.4); padding: 0.15rem 0.35rem; border-radius: 4px; font-size: 0.72rem;">CISA/FinOps</span>`;
+      }
+
+      return html || '<span style="color: #8b949e; font-size: 0.78rem;">Cost & Runtime Hardening</span>';
+    }
+
+    async function triggerAudit() {
+      const btn = document.getElementById('dispatch-btn');
+      const statusBox = document.getElementById('dispatch-status');
+      
+      let token = localStorage.getItem('gh_dispatch_token');
+      if (!token) {
+        token = prompt('Enter a GitHub Personal Access Token (repo scope) to trigger on-demand scan:');
+        if (token) {
+          localStorage.setItem('gh_dispatch_token', token.trim());
+        } else {
+          return;
+        }
+      }
+
+      btn.disabled = true;
+      btn.style.opacity = '0.6';
+      btn.textContent = 'Dispatching...';
+
+      statusBox.style.display = 'block';
+      statusBox.style.background = '#161b22';
+      statusBox.style.border = '1px solid #30363d';
+      statusBox.style.color = '#c9d1d9';
+      statusBox.textContent = 'Sending repository dispatch to GitHub Actions...';
+
+      try {
+        const resp = await fetch('https://api.github.com/repos/FreeFades2Black/omarchy-ci-orchestrator/dispatches', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/vnd.github+json'
+          },
+          body: JSON.stringify({ event_type: 'trigger-audit' })
+        });
+
+        if (resp.status === 204) {
+          statusBox.style.borderColor = '#238636';
+          statusBox.style.color = '#3fb950';
+          statusBox.textContent = '✓ Workflow dispatched successfully! Re-indexing fleet now. Refreshing page in 10s...';
+          setTimeout(() => location.reload(), 10000);
+        } else {
+          throw new Error(`GitHub API returned status ${resp.status}`);
+        }
+      } catch (err) {
+        statusBox.style.borderColor = '#da3633';
+        statusBox.style.color = '#f85149';
+        statusBox.textContent = `Dispatch failed: ${err.message}. Check token permissions.`;
+        localStorage.removeItem('gh_dispatch_token');
+      } finally {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.textContent = '↻ Trigger Scan Now';
+      }
+    }
+
+    // Render Telemetry
     fetch('./telemetry.json')
       .then(res => {
         if (!res.ok) throw new Error("Network response was not ok");
         return res.json();
       })
       .then(data => {
-        const updateDate = data.last_updated ? (formatTimestamp(data.last_updated) || data.last_updated) : "Just now";
-        document.getElementById('last-updated').textContent = `Last Synced: ${updateDate}`;
+        const updateDate = data.last_updated ? new Date(data.last_updated).toLocaleString() : "Just now";
+        document.getElementById('last-updated').textContent = `Daemon Last Synced: ${updateDate}`;
 
-        // Top stats
         const repos = Array.isArray(data.managed_repos) ? data.managed_repos : [];
         const prs = Array.isArray(data.dispatched_prs) ? data.dispatched_prs : (data.dispatched_prs && Array.isArray(data.dispatched_prs.value) ? data.dispatched_prs.value : []);
 
@@ -299,7 +401,7 @@
         const academicVal = data.academic_count || (data.engine_status && data.engine_status.academic_citations_indexed) || 8;
         document.getElementById('stat-academic').textContent = Number(academicVal).toLocaleString();
 
-        // Repos
+        // Repos list
         const repoList = document.getElementById('repo-list');
         document.getElementById('repo-count-badge').textContent = `${repos.length} Repos`;
         if (repos.length === 0) {
@@ -316,27 +418,22 @@
           `).join('');
         }
 
-        // PRs List
+        // PRs summary list
         const prList = document.getElementById('pr-list');
         document.getElementById('pr-count-badge').textContent = `${prs.length} Dispatched`;
         if (prs.length === 0) {
           prList.innerHTML = '<li><span class="repo-meta">No automated remediation pull requests found.</span></li>';
         } else {
           prList.innerHTML = prs.map(p => {
-            const isMerged = p.state && p.state.toUpperCase() === 'MERGED';
-            const isClosed = p.state && p.state.toUpperCase() === 'CLOSED';
-            const created = formatTimestamp(p.createdAt);
-            const createdRel = timeAgo(p.createdAt);
+            const stateUpper = (p.state || 'OPEN').toUpperCase();
+            const badgeClass = stateUpper === 'MERGED' ? 'badge-merged' : (stateUpper === 'OPEN' ? 'badge-open' : 'badge-closed');
             return `
               <li>
                 <div style="display:flex; align-items:flex-start; gap:0.5rem;">
-                  <span class="badge ${isMerged ? 'badge-merged' : (isClosed ? 'badge-uptodate' : 'badge-open')}">${(p.state || 'OPEN').toUpperCase()}</span>
+                  <span class="badge ${badgeClass}">${stateUpper}</span>
                   <div style="flex:1;">
                     <a href="${p.url}" target="_blank"><strong>#${p.number}</strong> ${p.title}</a>
-                    <div class="repo-meta">
-                      Repository: <strong>${p.repository.nameWithOwner}</strong>
-                      ${created ? ` • <span title="${p.createdAt}">${created} (${createdRel})</span>` : ''}
-                    </div>
+                    <div class="repo-meta">Repository: <strong>${p.repository.nameWithOwner}</strong></div>
                   </div>
                 </div>
               </li>
@@ -344,62 +441,52 @@
           }).join('');
         }
 
-        // Remediation Activity Timeline Table
-        const timelineTbody = document.getElementById('timeline-tbody');
-        document.getElementById('timeline-count-badge').textContent = `${prs.length} Runs`;
-        if (prs.length === 0) {
-          timelineTbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:var(--text-muted); padding:2rem;">No remediation runs detected yet.</td></tr>';
-        } else {
-          timelineTbody.innerHTML = prs.map(p => {
-            const isMerged = p.state && p.state.toUpperCase() === 'MERGED';
-            const isClosed = p.state && p.state.toUpperCase() === 'CLOSED';
-            const createdTime = formatTimestamp(p.createdAt) || 'N/A';
-            const createdRel = timeAgo(p.createdAt);
-
-            let resolvedDisplay = '';
-            if (isMerged) {
-              const resTime = formatTimestamp(p.closedAt) || formatTimestamp(p.updatedAt) || 'Resolved';
-              const resRel = timeAgo(p.closedAt || p.updatedAt);
-              resolvedDisplay = `<strong>${resTime}</strong><span class="time-subtext">${resRel}</span>`;
-            } else if (isClosed) {
-              const resTime = formatTimestamp(p.closedAt) || formatTimestamp(p.updatedAt) || 'Closed';
-              resolvedDisplay = `<span style="color:var(--text-muted);">${resTime}</span>`;
-            } else {
-              resolvedDisplay = `<span class="badge badge-open" style="margin:0;">Pending Auto-Merge</span>`;
-            }
-
-            return `
-              <tr>
-                <td>
-                  <a href="https://github.com/${p.repository.nameWithOwner}" target="_blank">
-                    <strong>${p.repository.nameWithOwner}</strong>
-                  </a>
-                </td>
-                <td>
-                  <a href="${p.url}" target="_blank">
-                    <strong>#${p.number}</strong> ${p.title}
-                  </a>
-                </td>
-                <td>
-                  <span class="badge ${isMerged ? 'badge-merged' : (isClosed ? 'badge-uptodate' : 'badge-open')}">
-                    ${(p.state || 'OPEN').toUpperCase()}
-                  </span>
-                </td>
-                <td>
-                  <strong>${createdTime}</strong>
-                  ${createdRel ? `<span class="time-subtext">${createdRel}</span>` : ''}
-                </td>
-                <td>
-                  ${resolvedDisplay}
-                </td>
-              </tr>
-            `;
-          }).join('');
+        // Enhanced Observability Table
+        document.getElementById('pr-counter').textContent = `${prs.length} Dispatched`;
+        const tbody = document.getElementById('remediation-rows');
+        if (!prs.length) {
+          tbody.innerHTML = '<tr><td colspan="6" style="padding: 1rem; text-align: center; color: #8b949e;">No remediation runs recorded yet.</td></tr>';
+          return;
         }
+
+        tbody.innerHTML = prs.map(pr => {
+          const stateUpper = (pr.state || 'OPEN').toUpperCase();
+          const badgeClass = stateUpper === 'MERGED' ? 'badge-merged' : (stateUpper === 'OPEN' ? 'badge-open' : 'badge-closed');
+          const resolvedDate = pr.mergedAt || (stateUpper === 'MERGED' || stateUpper === 'CLOSED' ? pr.closedAt : null);
+          const durationHtml = calculateDuration(pr.createdAt, resolvedDate);
+          const intelBadges = extractIntelligenceBadges(pr.body);
+          
+          return `
+            <tr style="border-bottom: 1px solid #21262d;">
+              <td style="padding: 0.65rem 0.5rem; font-weight: 600;">
+                <a href="https://github.com/${pr.repository.nameWithOwner}" target="_blank" style="color: #58a6ff; text-decoration: none;">
+                  ${pr.repository.nameWithOwner}
+                </a>
+              </td>
+              <td style="padding: 0.65rem 0.5rem;">
+                <span class="badge ${badgeClass}">${stateUpper}</span>
+              </td>
+              <td style="padding: 0.65rem 0.5rem;">
+                <a href="${pr.url}" target="_blank" style="color: #c9d1d9; text-decoration: none;">
+                  #${pr.number} ${pr.title}
+                </a>
+              </td>
+              <td style="padding: 0.65rem 0.5rem;">
+                ${intelBadges}
+              </td>
+              <td style="padding: 0.65rem 0.5rem; color: #8b949e;">
+                ${formatTimestamp(pr.createdAt)}
+              </td>
+              <td style="padding: 0.65rem 0.5rem;">
+                ${durationHtml}
+              </td>
+            </tr>
+          `;
+        }).join('');
       })
       .catch(err => {
-        document.getElementById('last-updated').textContent = "Telemetry offline or loading...";
-        console.error("Failed to load telemetry:", err);
+        console.error(err);
+        document.getElementById('last-updated').textContent = "Failed to sync telemetry.";
       });
   </script>
 </body>

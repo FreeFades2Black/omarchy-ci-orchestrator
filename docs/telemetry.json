@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-01T21:00:31Z",
+  "last_updated": "2026-10-01T21:05:21Z",
   "repo_count": 49,
   "cisa_count": 1731,
   "academic_count": 8,
@@ -254,7 +254,7 @@
       "isPrivate": false,
       "name": "omarchy-ci-orchestrator",
       "nameWithOwner": "FreeFades2Black/omarchy-ci-orchestrator",
-      "updatedAt": "2026-10-01T20:51:56Z"
+      "updatedAt": "2026-10-01T21:01:00Z"
     },
     {
       "description": "",
@@ -357,6 +357,7 @@
   ],
   "dispatched_prs": [
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/ci.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/ci.yml**: Upgrade actions/setup-node from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-node@v4` \u2192 `actions/setup-node@v7`)\n- **.github/workflows/ci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/deploy.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:59:43Z",
       "number": 3,
@@ -367,9 +368,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790888362)",
       "updatedAt": "2026-10-01T20:59:43Z",
-      "url": "https://github.com/FreeFades2Black/visionbody-pro-by-michelle/pull/3"
+      "url": "https://github.com/FreeFades2Black/visionbody-pro-by-michelle/pull/3",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/ci.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/ci.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/ci.yml**: Upgrade actions/upload-artifact from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/upload-artifact@v4` \u2192 `actions/upload-artifact@v7`)\n- **.github/workflows/ci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:59:25Z",
       "number": 1,
@@ -380,9 +383,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790888344)",
       "updatedAt": "2026-10-01T20:59:25Z",
-      "url": "https://github.com/FreeFades2Black/universal-resume-pipeline/pull/1"
+      "url": "https://github.com/FreeFades2Black/universal-resume-pipeline/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/test-and-deploy.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/test-and-deploy.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/test-and-deploy.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:58:50Z",
       "number": 1,
@@ -393,9 +398,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790888310)",
       "updatedAt": "2026-10-01T20:58:50Z",
-      "url": "https://github.com/FreeFades2Black/serverless-cloud-autoremediation-engine/pull/1"
+      "url": "https://github.com/FreeFades2Black/serverless-cloud-autoremediation-engine/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/ci.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/ci.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/ci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/daily-watchdog.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/daily-watchdog.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/daily-watchdog.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/watchdog-dashboard.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/watchdog-dashboard.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/watchdog-dashboard.yml**: Upgrade actions/configure-pages from v5 to v6 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/configure-pages@v5` \u2192 `actions/configure-pages@v6`)\n- **.github/workflows/watchdog-dashboard.yml**: Upgrade actions/upload-pages-artifact from v3 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/upload-pages-artifact@v3` \u2192 `actions/upload-pages-artifact@v5`)\n- **.github/workflows/watchdog-dashboard.yml**: Upgrade actions/deploy-pages from v4 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/deploy-pages@v4` \u2192 `actions/deploy-pages@v5`)\n- **.github/workflows/watchdog-dashboard.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:58:35Z",
       "number": 1,
@@ -406,9 +413,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790888279)",
       "updatedAt": "2026-10-01T20:58:35Z",
-      "url": "https://github.com/FreeFades2Black/repo-watchdog-agent/pull/1"
+      "url": "https://github.com/FreeFades2Black/repo-watchdog-agent/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/ci.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/ci.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/ci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/deploy_pages.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/deploy_pages.yml**: Upgrade actions/configure-pages from v4 to v6 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/configure-pages@v4` \u2192 `actions/configure-pages@v6`)\n- **.github/workflows/deploy_pages.yml**: Upgrade actions/upload-pages-artifact from v3 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/upload-pages-artifact@v3` \u2192 `actions/upload-pages-artifact@v5`)\n- **.github/workflows/deploy_pages.yml**: Upgrade actions/deploy-pages from v4 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/deploy-pages@v4` \u2192 `actions/deploy-pages@v5`)\n- **.github/workflows/deploy_pages.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:58:00Z",
       "number": 1,
@@ -419,9 +428,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790888253)",
       "updatedAt": "2026-10-01T20:58:00Z",
-      "url": "https://github.com/FreeFades2Black/prisma-upstate-care-lakehouse/pull/1"
+      "url": "https://github.com/FreeFades2Black/prisma-upstate-care-lakehouse/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/package-oci.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/package-oci.yml**: Upgrade docker/setup-buildx-action from v3 to v4 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`docker/setup-buildx-action@v3` \u2192 `docker/setup-buildx-action@v4`)\n- **.github/workflows/package-oci.yml**: Upgrade docker/build-push-action from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`docker/build-push-action@v5` \u2192 `docker/build-push-action@v7`)\n- **.github/workflows/package-oci.yml**: Upgrade aquasecurity/trivy-action from master to v0 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`aquasecurity/trivy-action@master` \u2192 `aquasecurity/trivy-action@v0`)\n- **.github/workflows/package-oci.yml**: Upgrade sigstore/cosign-installer from v3.4.0 to v4 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`sigstore/cosign-installer@v3.4.0` \u2192 `sigstore/cosign-installer@v4`)\n- **.github/workflows/package-oci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:57:36Z",
       "number": 1,
@@ -432,9 +443,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790888232)",
       "updatedAt": "2026-10-01T20:57:36Z",
-      "url": "https://github.com/FreeFades2Black/platform-resilience-fieldguide/pull/1"
+      "url": "https://github.com/FreeFades2Black/platform-resilience-fieldguide/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/ci.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/ci.yml**: Upgrade actions/setup-node from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-node@v4` \u2192 `actions/setup-node@v7`)\n- **.github/workflows/ci.yml**: Upgrade actions/configure-pages from v5 to v6 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/configure-pages@v5` \u2192 `actions/configure-pages@v6`)\n- **.github/workflows/ci.yml**: Upgrade actions/upload-pages-artifact from v3 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/upload-pages-artifact@v3` \u2192 `actions/upload-pages-artifact@v5`)\n- **.github/workflows/ci.yml**: Upgrade actions/deploy-pages from v4 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/deploy-pages@v4` \u2192 `actions/deploy-pages@v5`)\n- **.github/workflows/ci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:57:17Z",
       "number": 1,
@@ -445,9 +458,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790888213)",
       "updatedAt": "2026-10-01T20:57:17Z",
-      "url": "https://github.com/FreeFades2Black/platform-flight-simulator/pull/1"
+      "url": "https://github.com/FreeFades2Black/platform-flight-simulator/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/ci.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/ci.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/ci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:56:57Z",
       "number": 1,
@@ -458,9 +473,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790888198)",
       "updatedAt": "2026-10-01T20:56:57Z",
-      "url": "https://github.com/FreeFades2Black/omarchy-payment-vault/pull/1"
+      "url": "https://github.com/FreeFades2Black/omarchy-payment-vault/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/ci.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/ci.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/ci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:56:43Z",
       "number": 1,
@@ -471,9 +488,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790888185)",
       "updatedAt": "2026-10-01T20:56:43Z",
-      "url": "https://github.com/FreeFades2Black/omarchy-order-fulfillment/pull/1"
+      "url": "https://github.com/FreeFades2Black/omarchy-order-fulfillment/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/ci.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/ci.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/ci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:56:29Z",
       "number": 1,
@@ -484,9 +503,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790888170)",
       "updatedAt": "2026-10-01T20:56:29Z",
-      "url": "https://github.com/FreeFades2Black/omarchy-gitops-forge/pull/1"
+      "url": "https://github.com/FreeFades2Black/omarchy-gitops-forge/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/build-dashboard.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/build-dashboard.yml**: Upgrade actions/configure-pages from v5 to v6 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/configure-pages@v5` \u2192 `actions/configure-pages@v6`)\n- **.github/workflows/build-dashboard.yml**: Upgrade actions/upload-pages-artifact from v3 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/upload-pages-artifact@v3` \u2192 `actions/upload-pages-artifact@v5`)\n- **.github/workflows/build-dashboard.yml**: Upgrade actions/deploy-pages from v4 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/deploy-pages@v4` \u2192 `actions/deploy-pages@v5`)\n- **.github/workflows/build-dashboard.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/ci.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/ci.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/ci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:56:14Z",
       "number": 1,
@@ -497,9 +518,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790888147)",
       "updatedAt": "2026-10-01T20:56:14Z",
-      "url": "https://github.com/FreeFades2Black/omarchy-ci-orchestrator/pull/1"
+      "url": "https://github.com/FreeFades2Black/omarchy-ci-orchestrator/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/ci.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/ci.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/ci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:55:52Z",
       "number": 1,
@@ -510,9 +533,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790888133)",
       "updatedAt": "2026-10-01T20:55:52Z",
-      "url": "https://github.com/FreeFades2Black/omarchy-auth-service/pull/1"
+      "url": "https://github.com/FreeFades2Black/omarchy-auth-service/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/ci.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/ci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:55:38Z",
       "number": 1,
@@ -523,9 +548,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790888121)",
       "updatedAt": "2026-10-01T20:55:38Z",
-      "url": "https://github.com/FreeFades2Black/omarchy-antigravity-bootstrap/pull/1"
+      "url": "https://github.com/FreeFades2Black/omarchy-antigravity-bootstrap/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/ci.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/ci.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/ci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:55:25Z",
       "number": 1,
@@ -536,9 +563,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790888105)",
       "updatedAt": "2026-10-01T20:55:25Z",
-      "url": "https://github.com/FreeFades2Black/omarchy-analytics-engine/pull/1"
+      "url": "https://github.com/FreeFades2Black/omarchy-analytics-engine/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/terraform_ci.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/terraform_ci.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/terraform_ci.yml**: Upgrade hashicorp/setup-terraform from v3 to v4 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`hashicorp/setup-terraform@v3` \u2192 `hashicorp/setup-terraform@v4`)\n- **.github/workflows/terraform_ci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:55:10Z",
       "number": 1,
@@ -549,9 +578,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790888090)",
       "updatedAt": "2026-10-01T20:55:10Z",
-      "url": "https://github.com/FreeFades2Black/mosaic-healthcare-multicloud-platform/pull/1"
+      "url": "https://github.com/FreeFades2Black/mosaic-healthcare-multicloud-platform/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/ai-foundry-regulation.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/ai-foundry-regulation.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/ai-foundry-regulation.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/deploy-azure-resources.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/deploy-azure-resources.yml**: Upgrade azure/login from v2 to v3 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`azure/login@v2` \u2192 `azure/login@v3`)\n- **.github/workflows/deploy-azure-resources.yml**: Upgrade azure/cli from v2 to v3 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`azure/cli@v2` \u2192 `azure/cli@v3`)\n- **.github/workflows/deploy-azure-resources.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/deploy.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/deploy.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/deploy.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/test-azure-connection.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/test-azure-connection.yml**: Upgrade azure/login from v2 to v3 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`azure/login@v2` \u2192 `azure/login@v3`)\n- **.github/workflows/test-azure-connection.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:54:54Z",
       "number": 1,
@@ -562,9 +593,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790888058)",
       "updatedAt": "2026-10-01T20:54:54Z",
-      "url": "https://github.com/FreeFades2Black/mosaic-health-cloud-architecture/pull/1"
+      "url": "https://github.com/FreeFades2Black/mosaic-health-cloud-architecture/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/ai-foundry-eval-gate.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/ai-foundry-eval-gate.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/ai-foundry-eval-gate.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/deploy-ai-infrastructure.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/deploy-ai-infrastructure.yml**: Upgrade azure/login from v2 to v3 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`azure/login@v2` \u2192 `azure/login@v3`)\n- **.github/workflows/deploy-ai-infrastructure.yml**: Upgrade opentofu/setup-opentofu from v1 to v2 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`opentofu/setup-opentofu@v1` \u2192 `opentofu/setup-opentofu@v2`)\n- **.github/workflows/deploy-ai-infrastructure.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/deploy-azure-dashboard.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/deploy-azure-dashboard.yml**: Upgrade azure/login from v2 to v3 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`azure/login@v2` \u2192 `azure/login@v3`)\n- **.github/workflows/deploy-azure-dashboard.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/test-and-lint.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/test-and-lint.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/test-and-lint.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:54:21Z",
       "number": 1,
@@ -575,9 +608,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790888024)",
       "updatedAt": "2026-10-01T20:54:21Z",
-      "url": "https://github.com/FreeFades2Black/mosaic-azure-ai-model-factory/pull/1"
+      "url": "https://github.com/FreeFades2Black/mosaic-azure-ai-model-factory/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/ci.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/ci.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:53:47Z",
       "number": 1,
@@ -588,9 +623,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790888009)",
       "updatedAt": "2026-10-01T20:53:47Z",
-      "url": "https://github.com/FreeFades2Black/gunslingers-desktop-ledger/pull/1"
+      "url": "https://github.com/FreeFades2Black/gunslingers-desktop-ledger/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/ci.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/ci.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/ci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/deploy_pages.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/deploy_pages.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/deploy_pages.yml**: Upgrade actions/configure-pages from v5 to v6 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/configure-pages@v5` \u2192 `actions/configure-pages@v6`)\n- **.github/workflows/deploy_pages.yml**: Upgrade actions/upload-pages-artifact from v3 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/upload-pages-artifact@v3` \u2192 `actions/upload-pages-artifact@v5`)\n- **.github/workflows/deploy_pages.yml**: Upgrade actions/deploy-pages from v4 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/deploy-pages@v4` \u2192 `actions/deploy-pages@v5`)\n- **.github/workflows/deploy_pages.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:53:33Z",
       "number": 1,
@@ -601,9 +638,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790887983)",
       "updatedAt": "2026-10-01T20:53:33Z",
-      "url": "https://github.com/FreeFades2Black/greenville-infrastructure-lakehouse/pull/1"
+      "url": "https://github.com/FreeFades2Black/greenville-infrastructure-lakehouse/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/deploy_pages.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/deploy_pages.yml**: Upgrade actions/configure-pages from v4 to v6 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/configure-pages@v4` \u2192 `actions/configure-pages@v6`)\n- **.github/workflows/deploy_pages.yml**: Upgrade actions/upload-pages-artifact from v3 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/upload-pages-artifact@v3` \u2192 `actions/upload-pages-artifact@v5`)\n- **.github/workflows/deploy_pages.yml**: Upgrade actions/deploy-pages from v4 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/deploy-pages@v4` \u2192 `actions/deploy-pages@v5`)\n- **.github/workflows/deploy_pages.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:53:05Z",
       "number": 1,
@@ -614,9 +653,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790887962)",
       "updatedAt": "2026-10-01T20:53:05Z",
-      "url": "https://github.com/FreeFades2Black/ghost-job-intel-geospatial-pipeline/pull/1"
+      "url": "https://github.com/FreeFades2Black/ghost-job-intel-geospatial-pipeline/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/publish.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/publish.yml**: Upgrade actions/setup-node from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-node@v4` \u2192 `actions/setup-node@v7`)\n- **.github/workflows/publish.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:52:47Z",
       "number": 4,
@@ -627,9 +668,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790887948)",
       "updatedAt": "2026-10-01T20:52:47Z",
-      "url": "https://github.com/FreeFades2Black/freefades2black-card/pull/4"
+      "url": "https://github.com/FreeFades2Black/freefades2black-card/pull/4",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/snake.yml**: Upgrade crazy-max/ghaction-github-pages from v3.1.0 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`crazy-max/ghaction-github-pages@v3.1.0` \u2192 `crazy-max/ghaction-github-pages@v5`)\n- **.github/workflows/update-telemetry.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/update-telemetry.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/update-telemetry.yml**: Upgrade stefanzweifel/git-auto-commit-action from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`stefanzweifel/git-auto-commit-action@v5` \u2192 `stefanzweifel/git-auto-commit-action@v7`)\n- **.github/workflows/update-telemetry.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:52:32Z",
       "number": 1,
@@ -640,9 +683,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790887930)",
       "updatedAt": "2026-10-01T20:52:32Z",
-      "url": "https://github.com/FreeFades2Black/FreeFades2Black/pull/1"
+      "url": "https://github.com/FreeFades2Black/FreeFades2Black/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/deploy-azure-infrastructure.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/deploy-azure-infrastructure.yml**: Upgrade hashicorp/setup-terraform from v3 to v4 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`hashicorp/setup-terraform@v3` \u2192 `hashicorp/setup-terraform@v4`)\n- **.github/workflows/deploy-azure-infrastructure.yml**: Upgrade azure/login from v2 to v3 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`azure/login@v2` \u2192 `azure/login@v3`)\n- **.github/workflows/deploy-azure-infrastructure.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/pages.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/pages.yml**: Upgrade actions/configure-pages from v5 to v6 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/configure-pages@v5` \u2192 `actions/configure-pages@v6`)\n- **.github/workflows/pages.yml**: Upgrade actions/upload-pages-artifact from v3 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/upload-pages-artifact@v3` \u2192 `actions/upload-pages-artifact@v5`)\n- **.github/workflows/pages.yml**: Upgrade actions/deploy-pages from v4 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/deploy-pages@v4` \u2192 `actions/deploy-pages@v5`)\n- **.github/workflows/pages.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/rai-eval-gate.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/rai-eval-gate.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/rai-eval-gate.yml**: Upgrade hashicorp/setup-terraform from v3 to v4 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`hashicorp/setup-terraform@v3` \u2192 `hashicorp/setup-terraform@v4`)\n- **.github/workflows/rai-eval-gate.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:52:13Z",
       "number": 1,
@@ -653,9 +698,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790887896)",
       "updatedAt": "2026-10-01T20:52:13Z",
-      "url": "https://github.com/FreeFades2Black/foundry-responsible-agent-sentinel/pull/1"
+      "url": "https://github.com/FreeFades2Black/foundry-responsible-agent-sentinel/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/e2e-canary.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/e2e-canary.yml**: Upgrade azure/setup-helm from v4 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`azure/setup-helm@v4` \u2192 `azure/setup-helm@v5`)\n- **.github/workflows/e2e-canary.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/package-oci.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/package-oci.yml**: Upgrade docker/setup-buildx-action from v3 to v4 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`docker/setup-buildx-action@v3` \u2192 `docker/setup-buildx-action@v4`)\n- **.github/workflows/package-oci.yml**: Upgrade docker/build-push-action from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`docker/build-push-action@v5` \u2192 `docker/build-push-action@v7`)\n- **.github/workflows/package-oci.yml**: Upgrade aquasecurity/trivy-action from master to v0 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`aquasecurity/trivy-action@master` \u2192 `aquasecurity/trivy-action@v0`)\n- **.github/workflows/package-oci.yml**: Upgrade sigstore/cosign-installer from v3.4.0 to v4 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`sigstore/cosign-installer@v3.4.0` \u2192 `sigstore/cosign-installer@v4`)\n- **.github/workflows/package-oci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:50:43Z",
       "number": 1,
@@ -666,9 +713,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790887812)",
       "updatedAt": "2026-10-01T20:50:43Z",
-      "url": "https://github.com/FreeFades2Black/fleet-lakehouse-operator/pull/1"
+      "url": "https://github.com/FreeFades2Black/fleet-lakehouse-operator/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/deploy-portal.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/deploy-portal.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/deploy-portal.yml**: Upgrade actions/upload-pages-artifact from v3 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/upload-pages-artifact@v3` \u2192 `actions/upload-pages-artifact@v5`)\n- **.github/workflows/deploy-portal.yml**: Upgrade actions/deploy-pages from v4 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/deploy-pages@v4` \u2192 `actions/deploy-pages@v5`)\n- **.github/workflows/deploy-portal.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:50:16Z",
       "number": 1,
@@ -679,9 +728,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790887792)",
       "updatedAt": "2026-10-01T20:50:16Z",
-      "url": "https://github.com/FreeFades2Black/enterprise-platform-portal/pull/1"
+      "url": "https://github.com/FreeFades2Black/enterprise-platform-portal/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/pipeline.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/pipeline.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/pipeline.yml**: Upgrade hashicorp/setup-terraform from v3 to v4 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`hashicorp/setup-terraform@v3` \u2192 `hashicorp/setup-terraform@v4`)\n- **.github/workflows/pipeline.yml**: Upgrade azure/setup-helm from v4 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`azure/setup-helm@v4` \u2192 `azure/setup-helm@v5`)\n- **.github/workflows/pipeline.yml**: Upgrade aquasecurity/trivy-action from master to v0 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`aquasecurity/trivy-action@master` \u2192 `aquasecurity/trivy-action@v0`)\n- **.github/workflows/pipeline.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:49:56Z",
       "number": 1,
@@ -692,9 +743,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790887771)",
       "updatedAt": "2026-10-01T20:49:56Z",
-      "url": "https://github.com/FreeFades2Black/enterprise-multicloud-gitops-zerotrust/pull/1"
+      "url": "https://github.com/FreeFades2Black/enterprise-multicloud-gitops-zerotrust/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/ci.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/ci.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/ci.yml**: Upgrade aquasecurity/trivy-action from master to v0 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`aquasecurity/trivy-action@master` \u2192 `aquasecurity/trivy-action@v0`)\n- **.github/workflows/ci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/infracost.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/infracost.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/trail-dashboard-deploy.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/trail-dashboard-deploy.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/trail-dashboard-deploy.yml**: Upgrade actions/upload-pages-artifact from v3 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/upload-pages-artifact@v3` \u2192 `actions/upload-pages-artifact@v5`)\n- **.github/workflows/trail-dashboard-deploy.yml**: Upgrade actions/deploy-pages from v4 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/deploy-pages@v4` \u2192 `actions/deploy-pages@v5`)\n- **.github/workflows/trail-dashboard-deploy.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:49:35Z",
       "number": 1,
@@ -705,9 +758,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790887741)",
       "updatedAt": "2026-10-01T20:49:35Z",
-      "url": "https://github.com/FreeFades2Black/edge-telemetry-lakehouse/pull/1"
+      "url": "https://github.com/FreeFades2Black/edge-telemetry-lakehouse/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/revolver-pipeline.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/revolver-pipeline.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/revolver-pipeline.yml**: Upgrade aquasecurity/trivy-action from master to v0 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`aquasecurity/trivy-action@master` \u2192 `aquasecurity/trivy-action@v0`)\n- **.github/workflows/revolver-pipeline.yml**: Upgrade bridgecrewio/checkov-action from master to v12 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`bridgecrewio/checkov-action@master` \u2192 `bridgecrewio/checkov-action@v12`)\n- **.github/workflows/revolver-pipeline.yml**: Upgrade actions/upload-artifact from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/upload-artifact@v4` \u2192 `actions/upload-artifact@v7`)\n- **.github/workflows/revolver-pipeline.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:49:03Z",
       "number": 1,
@@ -718,9 +773,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790887716)",
       "updatedAt": "2026-10-01T20:49:03Z",
-      "url": "https://github.com/FreeFades2Black/defense-gitops-landing-zone/pull/1"
+      "url": "https://github.com/FreeFades2Black/defense-gitops-landing-zone/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/ci.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/ci.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/ci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/release.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/release.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/release.yml**: Upgrade actions/upload-artifact from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/upload-artifact@v4` \u2192 `actions/upload-artifact@v7`)\n- **.github/workflows/scheduled_health_check.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/scheduled_health_check.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/scheduled_health_check.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:48:35Z",
       "number": 1,
@@ -731,9 +788,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790887685)",
       "updatedAt": "2026-10-01T20:48:35Z",
-      "url": "https://github.com/FreeFades2Black/cloud-asset-lifecycle-operator/pull/1"
+      "url": "https://github.com/FreeFades2Black/cloud-asset-lifecycle-operator/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/ci.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/ci.yml**: Upgrade actions/setup-java from v4 to v6 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-java@v4` \u2192 `actions/setup-java@v6`)\n- **.github/workflows/ci.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/ci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/deploy_pages_report.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/deploy_pages_report.yml**: Upgrade actions/setup-java from v4 to v6 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-java@v4` \u2192 `actions/setup-java@v6`)\n- **.github/workflows/deploy_pages_report.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/deploy_pages_report.yml**: Upgrade actions/configure-pages from v5 to v6 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/configure-pages@v5` \u2192 `actions/configure-pages@v6`)\n- **.github/workflows/deploy_pages_report.yml**: Upgrade actions/upload-pages-artifact from v3 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/upload-pages-artifact@v3` \u2192 `actions/upload-pages-artifact@v5`)\n- **.github/workflows/deploy_pages_report.yml**: Upgrade actions/deploy-pages from v4 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/deploy-pages@v4` \u2192 `actions/deploy-pages@v5`)\n- **.github/workflows/deploy_pages_report.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:48:07Z",
       "number": 1,
@@ -744,9 +803,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790887652)",
       "updatedAt": "2026-10-01T20:48:07Z",
-      "url": "https://github.com/FreeFades2Black/circor-defense-ifs-cos-pipeline/pull/1"
+      "url": "https://github.com/FreeFades2Black/circor-defense-ifs-cos-pipeline/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/ci.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/ci.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/ci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/deploy_pages.yml**: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/checkout@v4` \u2192 `actions/checkout@v7`)\n- **.github/workflows/deploy_pages.yml**: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/setup-python@v5` \u2192 `actions/setup-python@v7`)\n- **.github/workflows/deploy_pages.yml**: Upgrade actions/configure-pages from v5 to v6 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/configure-pages@v5` \u2192 `actions/configure-pages@v6`)\n- **.github/workflows/deploy_pages.yml**: Upgrade actions/upload-pages-artifact from v3 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/upload-pages-artifact@v3` \u2192 `actions/upload-pages-artifact@v5`)\n- **.github/workflows/deploy_pages.yml**: Upgrade actions/deploy-pages from v4 to v5 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4] (`actions/deploy-pages@v4` \u2192 `actions/deploy-pages@v5`)\n- **.github/workflows/deploy_pages.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps). (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "0001-01-01T00:00:00Z",
       "createdAt": "2026-10-01T20:47:35Z",
       "number": 1,
@@ -757,9 +818,11 @@
       "state": "open",
       "title": "chore(ci): automated actions & dependency updates (1790887624)",
       "updatedAt": "2026-10-01T20:47:35Z",
-      "url": "https://github.com/FreeFades2Black/bmw-spartanburg-assembly-lakehouse/pull/1"
+      "url": "https://github.com/FreeFades2Black/bmw-spartanburg-assembly-lakehouse/pull/1",
+      "mergedAt": null
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/ci-validation.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing. (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "2026-09-30T16:39:07Z",
       "createdAt": "2026-09-30T16:36:51Z",
       "number": 1,
@@ -770,9 +833,11 @@
       "state": "merged",
       "title": "chore(ci): automated actions & dependency updates (1790786204)",
       "updatedAt": "2026-09-30T16:41:49Z",
-      "url": "https://github.com/FreeFades2Black/base-docker-web/pull/1"
+      "url": "https://github.com/FreeFades2Black/base-docker-web/pull/1",
+      "mergedAt": "2026-09-30T16:39:07Z"
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/ci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing. (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "2026-09-30T16:39:04Z",
       "createdAt": "2026-09-30T16:36:42Z",
       "number": 1,
@@ -783,9 +848,11 @@
       "state": "merged",
       "title": "chore(ci): automated actions & dependency updates (1790786194)",
       "updatedAt": "2026-09-30T16:41:45Z",
-      "url": "https://github.com/FreeFades2Black/azure-iac-generator/pull/1"
+      "url": "https://github.com/FreeFades2Black/azure-iac-generator/pull/1",
+      "mergedAt": "2026-09-30T16:39:04Z"
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/black-formatter.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing. (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/ci.yml**: Upgrade actions/checkout to v4 for Node 20 runtime compatibility. (`actions/checkout@v3` \u2192 `actions/checkout@v4`)\n- **.github/workflows/ci.yml**: Upgrade actions/setup-python to v5. (`actions/setup-python@v4` \u2192 `actions/setup-python@v5`)\n- **.github/workflows/ci.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing. (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/dead-code-analysis.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing. (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/deploy-databricks-app.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing. (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/deploy-helm-istio.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing. (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/deploy-spaces.yml**: Upgrade actions/checkout to v4 for Node 20 runtime compatibility. (`actions/checkout@v2` \u2192 `actions/checkout@v4`)\n- **.github/workflows/deploy-spaces.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing. (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/deploy_pipeline.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing. (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/docker-publish.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing. (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/flake8-linter.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing. (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/linkedin-broadcast.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing. (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/lint.yml**: Upgrade actions/checkout to v4 for Node 20 runtime compatibility. (`actions/checkout@v2` \u2192 `actions/checkout@v4`)\n- **.github/workflows/lint.yml**: Upgrade actions/setup-python to v5 for modern Python 3.12+ and caching. (`actions/setup-python@v2` \u2192 `actions/setup-python@v5`)\n- **.github/workflows/lint.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing. (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/pypi-publish.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing. (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/system-health-monitor.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing. (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/test.yml**: Upgrade actions/checkout to v4 for Node 20 runtime compatibility. (`actions/checkout@v2` \u2192 `actions/checkout@v4`)\n- **.github/workflows/test.yml**: Upgrade actions/setup-python to v5 for modern Python 3.12+ and caching. (`actions/setup-python@v2` \u2192 `actions/setup-python@v5`)\n- **.github/workflows/test.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing. (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/update-profile-readme.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing. (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "2026-09-30T16:39:01Z",
       "createdAt": "2026-09-30T16:36:31Z",
       "number": 129,
@@ -796,9 +863,11 @@
       "state": "merged",
       "title": "chore(ci): automated actions & dependency updates (1790786103)",
       "updatedAt": "2026-09-30T16:39:43Z",
-      "url": "https://github.com/For-Your-Service/For-Your-Service/pull/129"
+      "url": "https://github.com/For-Your-Service/For-Your-Service/pull/129",
+      "mergedAt": "2026-09-30T16:39:01Z"
     },
     {
+      "body": "### Automated Dependency & CI Upgrades\n\n- **.github/workflows/auto-assign.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing. (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n- **.github/workflows/proof-html.yml**: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing. (`runs-on: ubuntu-latest\n` \u2192 `runs-on: ubuntu-latest\n    timeout-minutes: 10\n`)\n\n> Generated automatically by `repo-agent` with auto-merge verification.",
       "closedAt": "2026-09-30T16:38:57Z",
       "createdAt": "2026-09-30T16:34:57Z",
       "number": 1,
@@ -809,7 +878,8 @@
       "state": "merged",
       "title": "chore(ci): automated actions & dependency updates (1790786085)",
       "updatedAt": "2026-09-30T16:39:30Z",
-      "url": "https://github.com/For-Your-Service/demo-repository/pull/1"
+      "url": "https://github.com/For-Your-Service/demo-repository/pull/1",
+      "mergedAt": "2026-09-30T16:38:57Z"
     }
   ]
 }

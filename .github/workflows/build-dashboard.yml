@@ -2,8 +2,10 @@ name: Deploy Telemetry Dashboard to GitHub Pages
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Runs hourly
+    - cron: '0 * * * *'
   workflow_dispatch:
+  repository_dispatch:
+    types: [trigger-audit]
   push:
     branches:
       - main
@@ -29,24 +31,24 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Aggregate All Fleet Repositories & Remediation Timelines
+      - name: Aggregate Fleet Repositories & Detailed PR Metadata
         env:
           GH_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p docs
-          echo "[*] Querying repositories and pulling remediation run timestamps..."
+          echo "[*] Harvesting fleet repositories and PR intelligence metadata..."
 
-          # 1. Fetch repositories
+          # 1. Gather all repositories
           USER_REPOS=$(gh repo list FreeFades2Black --limit 100 --json nameWithOwner,name,description,updatedAt,isPrivate 2>/dev/null || echo "[]")
           ORG_REPOS=$(gh repo list For-Your-Service --limit 100 --json nameWithOwner,name,description,updatedAt,isPrivate 2>/dev/null || echo "[]")
           ALL_REPOS=$(jq -s '.[0] + .[1] | unique_by(.nameWithOwner)' <(echo "$USER_REPOS") <(echo "$ORG_REPOS"))
 
-          # 2. Extract detailed PR timestamps (createdAt, updatedAt, closedAt)
+          # 2. Extract detailed PR fields including body text for intelligence parsing
           PRS_JSON=$(gh search prs --author FreeFades2Black "chore" --sort updated --limit 60 \
-            --json number,title,state,url,repository,createdAt,updatedAt,closedAt 2>/dev/null || echo "[]")
+            --json number,title,body,state,url,repository,createdAt,updatedAt,closedAt 2>/dev/null || echo "[]")
 
-          # 3. Sort PRs by most recent remediation activity first
-          SORTED_PRS=$(echo "$PRS_JSON" | jq 'sort_by(.updatedAt) | reverse')
+          # 3. Sort PRs by most recent remediation activity first and synthesize mergedAt
+          SORTED_PRS=$(echo "$PRS_JSON" | jq 'map(. + {mergedAt: (if (.state | ascii_downcase) == "merged" then .closedAt else null end)}) | sort_by(.updatedAt) | reverse')
 
           # 4. Construct live telemetry feed
           jq -n \
