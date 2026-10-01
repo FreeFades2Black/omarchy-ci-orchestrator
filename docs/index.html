@@ -204,6 +204,14 @@
     </div>
 
     <div class="grid">
+      <!-- Agent Daemon Infrastructure Status Block -->
+      <div class="card" style="grid-column: 1 / -1; margin-bottom: 1rem;">
+        <h3 style="margin-top: 0; color: #f0f6fc;">🤖 Autonomous Agent Daemons & Infrastructure</h3>
+        <div id="daemons-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 0.75rem;">
+          <!-- Rendered dynamically via JS -->
+        </div>
+      </div>
+
       <div class="card">
         <div class="card-header">
           <h2>📦 Active Monitored Repositories</h2>
@@ -400,6 +408,22 @@
 
         const academicVal = data.academic_count || (data.engine_status && data.engine_status.academic_citations_indexed) || 8;
         document.getElementById('stat-academic').textContent = Number(academicVal).toLocaleString();
+
+        // Daemons topology
+        if (data.daemons && document.getElementById('daemons-grid')) {
+          const daemonsGrid = document.getElementById('daemons-grid');
+          daemonsGrid.innerHTML = data.daemons.map(d => `
+            <div style="background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 1rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <strong style="color: #58a6ff; font-size: 0.95rem;">${d.name}</strong>
+                <span class="badge badge-merged">${d.status}</span>
+              </div>
+              <div style="font-size: 0.8rem; color: #8b949e; margin-bottom: 0.3rem;">Host: <code style="color: #c9d1d9;">${d.host}</code></div>
+              <div style="font-size: 0.8rem; color: #8b949e; margin-bottom: 0.3rem;">Role: ${d.role}</div>
+              <div style="font-size: 0.75rem; color: #3fb950; font-family: monospace;">${d.service || d.endpoint || d.mechanism || ''}</div>
+            </div>
+          `).join('');
+        }
 
         // Repos list
         const repoList = document.getElementById('repo-list');

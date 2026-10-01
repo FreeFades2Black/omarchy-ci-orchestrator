@@ -1,5 +1,32 @@
 {
-  "last_updated": "2026-10-01T21:05:21Z",
+  "last_updated": "2026-10-01T21:12:50Z",
+  "daemons": [
+    {
+      "name": "repo-agent",
+      "service": "repo-agent.service",
+      "host": "omarchy (Arch Linux)",
+      "role": "Fleet Inspector, PR Dispatcher, Auto-Merger",
+      "status": "ACTIVE",
+      "persistence": "systemd --user (lingering enabled)"
+    },
+    {
+      "name": "scraper-agent",
+      "service": "scraper-agent.service",
+      "host": "omarchy (Arch Linux)",
+      "endpoint": "http://127.0.0.1:8484",
+      "role": "CISA KEV, arXiv, OpenAlex, Dynamic Releases",
+      "status": "ACTIVE",
+      "database": "intel_cache.db (SQLite WAL)"
+    },
+    {
+      "name": "windows-watchdog",
+      "service": "omarchy_watchdog.ps1",
+      "host": "windows-desktop",
+      "role": "Remote SSH Poller & Desktop Notification Toast",
+      "status": "ACTIVE",
+      "mechanism": "PowerShell / VBScript Startup"
+    }
+  ],
   "repo_count": 49,
   "cisa_count": 1731,
   "academic_count": 8,
@@ -254,7 +281,7 @@
       "isPrivate": false,
       "name": "omarchy-ci-orchestrator",
       "nameWithOwner": "FreeFades2Black/omarchy-ci-orchestrator",
-      "updatedAt": "2026-10-01T21:01:00Z"
+      "updatedAt": "2026-10-01T21:06:05Z"
     },
     {
       "description": "",

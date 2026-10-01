@@ -58,6 +58,33 @@ jobs:
             --argjson prs "$SORTED_PRS" \
             '{
               last_updated: $timestamp,
+              daemons: [
+                {
+                  name: "repo-agent",
+                  service: "repo-agent.service",
+                  host: "omarchy (Arch Linux)",
+                  role: "Fleet Inspector, PR Dispatcher, Auto-Merger",
+                  status: "ACTIVE",
+                  persistence: "systemd --user (lingering enabled)"
+                },
+                {
+                  name: "scraper-agent",
+                  service: "scraper-agent.service",
+                  host: "omarchy (Arch Linux)",
+                  endpoint: "http://127.0.0.1:8484",
+                  role: "CISA KEV, arXiv, OpenAlex, Dynamic Releases",
+                  status: "ACTIVE",
+                  database: "intel_cache.db (SQLite WAL)"
+                },
+                {
+                  name: "windows-watchdog",
+                  service: "omarchy_watchdog.ps1",
+                  host: "windows-desktop",
+                  role: "Remote SSH Poller & Desktop Notification Toast",
+                  status: "ACTIVE",
+                  mechanism: "PowerShell / VBScript Startup"
+                }
+              ],
               repo_count: $repo_count,
               cisa_count: 1731,
               academic_count: 8,
