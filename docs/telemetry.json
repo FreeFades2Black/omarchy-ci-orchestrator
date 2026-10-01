@@ -1,27 +1,29 @@
 {
   "last_updated": "2026-10-01T21:16:54Z",
   "host_telemetry": {
-    "heartbeat_utc": "2026-10-01T21:14:54Z",
+    "heartbeat_utc": "2026-10-01T21:28:34Z",
     "host": "omarchy (Arch Linux)",
     "repo_agent": {
       "status": "active",
       "pid": 1882022,
       "cpu": "0.0%",
       "memory": "62.8 MB",
-      "uptime": "23:47"
+      "uptime": "37:27"
     },
     "scraper_agent": {
       "status": "active",
-      "pid": 1879097,
-      "cpu": "0.1%",
-      "memory": "95.3 MB",
-      "uptime": "48:21"
+      "pid": 1885699,
+      "cpu": "0.4%",
+      "memory": "69.5 MB",
+      "uptime": "01:24"
     },
     "sqlite_intel": {
       "cisa_cves": 1731,
       "academic_papers": 8,
       "cached_action_tags": 22,
-      "last_synced": "2026-10-01T20:26:12.547216+00:00"
+      "last_synced": "2026-10-01T20:26:12.547216+00:00",
+      "db_size_bytes": 184320,
+      "last_vacuum_run": ""
     }
   },
   "daemons": [
@@ -33,7 +35,7 @@
       "status": "ACTIVE",
       "cpu": "0.0%",
       "memory": "62.8 MB",
-      "uptime": "23:47",
+      "uptime": "37:27",
       "persistence": "systemd --user (lingering enabled)"
     },
     {
@@ -43,9 +45,9 @@
       "endpoint": "http://127.0.0.1:8484",
       "role": "CISA KEV, arXiv, OpenAlex, Dynamic Releases",
       "status": "ACTIVE",
-      "cpu": "0.1%",
-      "memory": "95.3 MB",
-      "uptime": "48:21",
+      "cpu": "0.4%",
+      "memory": "69.5 MB",
+      "uptime": "01:24",
       "database": "intel_cache.db (SQLite WAL)"
     },
     {

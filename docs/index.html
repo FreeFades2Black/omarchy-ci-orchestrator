@@ -328,9 +328,13 @@
               <span style="color: #8b949e;">Academic Preprints:</span>
               <span id="db-papers" style="color: #f0f6fc; font-family: monospace;">8</span>
             </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
+              <span style="color: #8b949e;">DB Size:</span>
+              <span id="db-size" style="color: #f0f6fc; font-family: monospace;">--</span>
+            </div>
             <div style="display: flex; justify-content: space-between; font-size: 0.82rem;">
-              <span style="color: #8b949e;">Cached Action Tags:</span>
-              <span id="db-tags" style="color: #f0f6fc; font-family: monospace;">--</span>
+              <span style="color: #8b949e;">Last Vacuum:</span>
+              <span id="db-vacuum" style="color: #f0f6fc; font-family: monospace;">--</span>
             </div>
           </div>
 
@@ -548,11 +552,24 @@
           const repo = host.repo_agent || {};
           const scraper = host.scraper_agent || {};
           const db = host.sqlite_intel || {};
+          const hbBadge = document.getElementById('topology-heartbeat');
 
-          // Host heartbeat
-          if (host.heartbeat_utc && document.getElementById('topology-heartbeat')) {
+          // Host heartbeat with SLA Freshness Indicator
+          if (host.heartbeat_utc && hbBadge) {
             const hbDate = new Date(host.heartbeat_utc);
-            document.getElementById('topology-heartbeat').textContent = `● Heartbeat: ${hbDate.toLocaleTimeString()}`;
+            const now = new Date();
+            const diffMinutes = Math.floor((now - hbDate) / 60000);
+
+            if (diffMinutes > 30) {
+              hbBadge.textContent = `▲ Stale Heartbeat: ${diffMinutes}m ago`;
+              hbBadge.style.color = '#f85149'; // Red / Critical
+            } else if (diffMinutes > 15) {
+              hbBadge.textContent = `● Degraded Heartbeat: ${diffMinutes}m ago`;
+              hbBadge.style.color = '#d29922'; // Amber / Warning
+            } else {
+              hbBadge.textContent = `● Live Heartbeat: ${hbDate.toLocaleTimeString()}`;
+              hbBadge.style.color = '#3fb950'; // Green / Normal
+            }
           }
 
           // Update repo-agent metrics
@@ -572,7 +589,15 @@
           // Update database stats
           if (db.cisa_cves && document.getElementById('db-cisa')) document.getElementById('db-cisa').textContent = Number(db.cisa_cves).toLocaleString();
           if (db.academic_papers && document.getElementById('db-papers')) document.getElementById('db-papers').textContent = Number(db.academic_papers).toLocaleString();
-          if (db.cached_action_tags && document.getElementById('db-tags')) document.getElementById('db-tags').textContent = Number(db.cached_action_tags).toLocaleString();
+          if (db.db_size_bytes && document.getElementById('db-size')) {
+            const kb = (db.db_size_bytes / 1024).toFixed(1);
+            document.getElementById('db-size').textContent = `${kb} KB`;
+          }
+          if (document.getElementById('db-vacuum')) {
+            document.getElementById('db-vacuum').textContent = (db.last_vacuum_run && db.last_vacuum_run !== 'N/A')
+              ? new Date(db.last_vacuum_run).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
+              : 'Pending';
+          }
         }
 
         // Daemons topology
