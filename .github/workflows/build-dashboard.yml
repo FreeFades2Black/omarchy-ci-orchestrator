@@ -39,41 +39,44 @@ jobs:
           mkdir -p docs
           echo "[*] Harvesting fleet repositories and combining daemon telemetry..."
 
-          # 1. Gather all repositories
-          USER_REPOS=$(gh repo list FreeFades2Black --limit 100 --json nameWithOwner,name,description,updatedAt,isPrivate 2>/dev/null || echo "[]")
-          ORG_REPOS=$(gh repo list For-Your-Service --limit 100 --json nameWithOwner,name,description,updatedAt,isPrivate 2>/dev/null || echo "[]")
-          ALL_REPOS=$(jq -s '.[0] + .[1] | unique_by(.nameWithOwner)' <(echo "$USER_REPOS") <(echo "$ORG_REPOS"))
+          # 1. Gather all repositories into disk files to avoid ARG_MAX limits
+          gh repo list FreeFades2Black --limit 100 --json nameWithOwner,name,description,updatedAt,isPrivate > /tmp/user_repos.json 2>/dev/null || echo "[]" > /tmp/user_repos.json
+          gh repo list For-Your-Service --limit 100 --json nameWithOwner,name,description,updatedAt,isPrivate > /tmp/org_repos.json 2>/dev/null || echo "[]" > /tmp/org_repos.json
+          jq -s '(.[0] // []) + (.[1] // []) | unique_by(.nameWithOwner)' /tmp/user_repos.json /tmp/org_repos.json > /tmp/all_repos.json
 
-          # 2. Extract detailed PR fields including body text for intelligence parsing
-          PRS_JSON=$(gh search prs --author FreeFades2Black "chore" --sort updated --limit 60 \
-            --json number,title,body,state,url,repository,createdAt,updatedAt,closedAt 2>/dev/null || echo "[]")
+          # 2. Extract detailed PR fields directly to file
+          gh search prs --author FreeFades2Black "chore" --sort updated --limit 60 \
+            --json number,title,body,state,url,repository,createdAt,updatedAt,closedAt > /tmp/raw_prs.json 2>/dev/null || echo "[]" > /tmp/raw_prs.json
 
-          # 3. Sort PRs by most recent remediation activity first and synthesize mergedAt
-          SORTED_PRS=$(echo "$PRS_JSON" | jq 'map(. + {mergedAt: (if (.state | ascii_downcase) == "merged" then .closedAt else null end)}) | sort_by(.updatedAt) | reverse')
+          # 3. Sort PRs by most recent remediation activity first and synthesize mergedAt directly to file
+          jq 'map(. + {mergedAt: (if (.state | ascii_downcase) == "merged" then .closedAt else null end)}) | sort_by(.updatedAt) | reverse' /tmp/raw_prs.json > /tmp/sorted_prs.json
 
           # 4. Parse host telemetry payload if available, else retain existing host_telemetry from docs/telemetry.json or fallback
           if [ -n "$DISPATCH_PAYLOAD" ] && [ "$DISPATCH_PAYLOAD" != "null" ] && [ "$DISPATCH_PAYLOAD" != "{}" ]; then
-            HOST_INTEL=$(echo "$DISPATCH_PAYLOAD")
+            echo "$DISPATCH_PAYLOAD" > /tmp/host_intel.json
           elif [ -f "docs/telemetry.json" ] && [ "$(jq -r '.host_telemetry // empty' docs/telemetry.json 2>/dev/null)" != "" ]; then
-            HOST_INTEL=$(jq '.host_telemetry' docs/telemetry.json)
+            jq '.host_telemetry' docs/telemetry.json > /tmp/host_intel.json
           else
-            HOST_INTEL='{
-              "heartbeat_utc": "'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'",
-              "host": "omarchy (Arch Linux)",
-              "repo_agent": {"status": "active", "cpu": "0.0%", "memory": "62.8 MB", "uptime": "online"},
-              "scraper_agent": {"status": "active", "cpu": "0.1%", "memory": "95.3 MB", "uptime": "online"},
-              "sqlite_intel": {"cisa_cves": 1731, "academic_papers": 8, "cached_action_tags": 22, "last_synced": "'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'"}
-            }'
+            jq -n --arg ts "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" '{
+              heartbeat_utc: $ts,
+              host: "omarchy (Arch Linux)",
+              repo_agent: {status: "active", cpu: "0.0%", memory: "62.8 MB", uptime: "online"},
+              scraper_agent: {status: "active", cpu: "0.1%", memory: "95.3 MB", uptime: "online"},
+              sqlite_intel: {cisa_cves: 1731, academic_papers: 8, cached_action_tags: 22, last_synced: $ts}
+            }' > /tmp/host_intel.json
           fi
 
-          # 5. Construct live telemetry feed
+          # 5. Construct live telemetry feed safely using slurpfile to prevent ARG_MAX / MAX_ARG_STRLEN limits
           jq -n \
             --arg timestamp "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
-            --argjson repo_count "$(echo "$ALL_REPOS" | jq 'length')" \
-            --argjson repos "$ALL_REPOS" \
-            --argjson prs "$SORTED_PRS" \
-            --argjson host "$HOST_INTEL" \
-            '{
+            --slurpfile repos /tmp/all_repos.json \
+            --slurpfile prs /tmp/sorted_prs.json \
+            --slurpfile host /tmp/host_intel.json \
+            '($repos[0] // []) as $repos |
+             ($prs[0] // []) as $prs |
+             ($host[0] // {}) as $host |
+             ($repos | length) as $repo_count |
+             {
               last_updated: $timestamp,
               host_telemetry: $host,
               daemons: [
